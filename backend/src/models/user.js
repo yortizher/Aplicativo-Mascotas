@@ -3,7 +3,7 @@ import { db } from "../db/db.js";
 
 const { STRING, BOOLEAN } = DataTypes
 
-export const User = db.define('data',{
+export const User = db.define('postgres',{
 id_user: {
     type: STRING
 },
