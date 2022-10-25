@@ -1,10 +1,9 @@
 <script setup>
-
+import   CategoryRegistration from './views/categoryRegistration.vue';
 </script>
 
 <template>
-  <h1>Hola anyelith</h1>
- 
+  <CategoryRegistration/>
 </template>
 
 <style scoped>
