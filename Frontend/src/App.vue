@@ -4,7 +4,7 @@
 
 <template>
   <h1>Hola anyelith</h1>
- 
+
 </template>
 
 <style scoped>
