@@ -1,24 +1,24 @@
-import { Race } from '../models/race.model.js'
+import { Refuge } from '../models/refuge.model.js'
 
-export const races = async (req,res) => {
+export const refuges = async (req,res) => {
     try{
-        const racesList = await Race.findAll()
-        res.json(racesList)
+        const refugesList = await Refuge.findAll()
+        res.json(refugesList)
     }catch(err){
         console.log(err);
     }
    
 }
 
-export const raceById = async (req,res) => {
+export const refugesById = async (req,res) => {
     const { id } = req.params
     try{
-        const raceId = await Race.findOne({
+        const refugeId = await Refuge.findOne({
             where: {
               id,
             },
           });
-          res.json(raceId);
+          res.json(refugeId);
     }catch(err){
         res.status(500).json({
             message: err,
@@ -26,45 +26,43 @@ export const raceById = async (req,res) => {
     }
 }
 
-export const createRaces = async  (req,res) => {
-    const { username,email,active } = req.body
-    if( !username || !email ||  active === 'undefined'){
+export const createRefuges = async  (req,res) => {
+    const { name, address } = req.body
+    if( !name || !address ){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
-    const createRace = await Race.create({
-        username,
-        email,
-        active
+    const createRefuge = await Refuge.create({
+        name, address
     })
-    res.json(createRace)
+    res.json(createRefuge)
 }
 
-export const deleteRace = async (req,res) => {
+export const deleteRefuges = async (req,res) => {
     const { id } = req.params
     try{
-         await User.destroy({
+         await Refuge.destroy({
             where: {
                 id
             }
         })
-         res.status(204).json({message: `User with id:${id} was succesfully removed`})
+         res.status(204).json({message: `Refuge with id:${id} was succesfully removed`})
        }catch(err){
             console.error(err)
        }
 }
 
-export const editRace = async (req,res) => {
+export const editRefuges = async (req,res) => {
     const { id } = req.params
     try {
         const { username, email, active } = req.body
     
-        const editUser = await User.findByPk(id)
+        const editRefuge= await Refuge.findByPk(id)
         editUser.username = username
         editUser.email = email
         editUser.active = active
-        await editUser.save()
+        await editRefuge.save()
     
-        res.json(editUser)
+        res.json(editRefuge)
       } catch (err) {
         return res.status(500).json({ message: err})
       }

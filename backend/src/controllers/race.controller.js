@@ -29,19 +29,17 @@ export const raceById = async (req,res) => {
 }
 
 export const createRaces = async  (req,res) => {
-    const { username,email,active } = req.body
-    if( !username || !email ||  active === 'undefined'){
+    const { name } = req.body
+    if( !name ){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
     const createRace = await Race.create({
-        username,
-        email,
-        active
+        name
     })
     res.json(createRace)
 }
 
-export const deleteRace = async (req,res) => {
+export const deleteRaces = async (req,res) => {
     const { id } = req.params
     try{
          await Race.destroy({
@@ -55,15 +53,13 @@ export const deleteRace = async (req,res) => {
        }
 }
 
-export const editRace = async (req,res) => {
+export const editRaces = async (req,res) => {
     const { id } = req.params
     try {
-        const { username, email, active } = req.body
+        const { name } = req.body
     
         const editRace = await Race.findByPk(id)
-        editRace.username = username
-        editRace.email = email
-        editRace.active = active
+        editRace.name = name
         await editRace.save()
     
         res.json(editRace)

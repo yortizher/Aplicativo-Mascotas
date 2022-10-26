@@ -1,17 +1,17 @@
 import { Router } from 'express'
 import { 
-    raceById,
-    races,
-    createRaces,
-    editRace,
-    deleteRace
- } from '../controllers/race.controller.js'
+    adoptingById,
+    adopting,
+    createAdoptions,
+    editAdoptions,
+    deleteAdoptions
+ } from '../controllers/adopting.controller.js'
 
-export const raceRouter = Router()
+export const adoptingRouter = Router()
 
 
-raceRouter.get('/api/v1/adopting', races)
-raceRouter.get('/api/v1/adopting/:id', raceById)
-raceRouter.post('/api/v1/adopting', createRaces)
-raceRouter.put('/api/v1/adopting/:id', editRace)
-raceRouter.delete('/api/v1/adopting/:id', deleteRace)
+adoptingRouter.get('/api/v1/adopting', adopting)
+adoptingRouter.get('/api/v1/adopting/:id', adoptingById)
+adoptingRouter.post('/api/v1/adopting', createAdoptions)
+adoptingRouter.put('/api/v1/adopting/:id', editAdoptions)
+adoptingRouter.delete('/api/v1/adopting/:id', deleteAdoptions)

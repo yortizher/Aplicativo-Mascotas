@@ -1,26 +1,24 @@
-import { Race } from '../models/race.model.js'
+import { AdoptingRegister } from '../models/adopting.model.js'
 
-
-
-export const races = async (req,res) => {
+export const adopting = async (req,res) => {
     try{
-        const racesList = await Race.findAll()
-        res.json(racesList)
+        const adoptingList = await AdoptingRegister.findAll()
+        res.json(adoptingList)
     }catch(err){
         console.log(err);
     }
    
 }
 
-export const raceById = async (req,res) => {
+export const adoptingById = async (req,res) => {
     const { id } = req.params
     try{
-        const raceId = await Race.findOne({
+        const adoptingId = await AdoptingRegister.findOne({
             where: {
               id,
             },
           });
-          res.json(raceId);
+          res.json(adoptingId);
     }catch(err){
         res.status(500).json({
             message: err,
@@ -28,45 +26,47 @@ export const raceById = async (req,res) => {
     }
 }
 
-export const createRaces = async  (req,res) => {
+export const createAdoptions = async  (req,res) => {
     const { name,lastname,identity_card, phone, email, address, occupation } = req.body
-    if( !name || !lastname ||  active === 'undefined'){
+    if( !name || !lastname ||  !identity_card || !phone || !email ||  !address || !occupation ){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
-    const createRace = await Race.create({
-        username,
-        email,
-        active
+    const createAdoption = await AdoptingRegister.create({
+        name,lastname,identity_card, phone, email, address, occupation
     })
-    res.json(createRace)
+    res.json(createAdoption)
 }
 
-export const deleteRace = async (req,res) => {
+export const deleteAdoptions= async (req,res) => {
     const { id } = req.params
     try{
-         await User.destroy({
+         await AdoptingRegister.destroy({
             where: {
                 id
             }
         })
-         res.status(204).json({message: `User with id:${id} was succesfully removed`})
+         res.status(204).json({message: `Adoption with id:${id} was succesfully removed`})
        }catch(err){
             console.error(err)
        }
 }
 
-export const editRace = async (req,res) => {
+export const editAdoptions = async (req,res) => {
     const { id } = req.params
     try {
-        const { username, email, active } = req.body
+        const { name,lastname,identity_card, phone, email, address, occupation } = req.body
     
-        const editUser = await User.findByPk(id)
-        editUser.username = username
-        editUser.email = email
-        editUser.active = active
-        await editUser.save()
+        const editAdoption= await AdoptingRegister.findByPk(id)
+        editAdoption.name = name
+        editAdoption.lastname = lastname
+        editAdoption.identity_card = identity_card
+        editAdoption.phone = phone
+        editAdoption.email = email
+        editAdoption.address = address
+        editAdoption.occupation = occupation
+        await editAdoption.save()
     
-        res.json(editUser)
+        res.json(editAdoption)
       } catch (err) {
         return res.status(500).json({ message: err})
       }

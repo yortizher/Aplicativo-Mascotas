@@ -3,8 +3,8 @@ import {
     raceById,
     races,
     createRaces,
-    editRace,
-    deleteRace
+    editRaces,
+    deleteRaces
  } from '../controllers/race.controller.js'
 
 export const raceRouter = Router()
@@ -13,5 +13,5 @@ export const raceRouter = Router()
 raceRouter.get('/api/v1/race', races)
 raceRouter.get('/api/v1/race/:id', raceById)
 raceRouter.post('/api/v1/race', createRaces)
-raceRouter.put('/api/v1/race/:id', editRace)
-raceRouter.delete('/api/v1/race/:id', deleteRace)
+raceRouter.put('/api/v1/race/:id', editRaces)
+raceRouter.delete('/api/v1/race/:id', deleteRaces)
