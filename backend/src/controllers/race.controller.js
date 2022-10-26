@@ -29,12 +29,13 @@ export const raceById = async (req,res) => {
 }
 
 export const createRaces = async  (req,res) => {
-    const { name } = req.body
-    if( !name ){
+    const { name, species_id} = req.body
+    if( !name || !species_id ){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
     const createRace = await Race.create({
-        name
+        name,
+        species_id
     })
     res.json(createRace)
 }
