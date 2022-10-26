@@ -1,8 +1,8 @@
-import { AdoptingRegister } from '../models/adopter.model.js'
+import { Adopter } from '../models/adopter.model.js'
 
 export const adopting = async (req,res) => {
     try{
-        const adoptingList = await AdoptingRegister.findAll()
+        const adoptingList = await Adopter.findAll()
         res.json(adoptingList)
     }catch(err){
         console.log(err);
@@ -13,7 +13,7 @@ export const adopting = async (req,res) => {
 export const adoptingById = async (req,res) => {
     const { id } = req.params
     try{
-        const adoptingId = await AdoptingRegister.findOne({
+        const adoptingId = await Adopter.findOne({
             where: {
               id,
             },
@@ -31,7 +31,7 @@ export const createAdoptions = async  (req,res) => {
     if( !name || !lastname ||  !identity_card || !phone || !email ||  !address || !occupation ){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
-    const createAdoption = await AdoptingRegister.create({
+    const createAdoption = await Adopter.create({
         name,lastname,identity_card, phone, email, address, occupation
     })
     res.json(createAdoption)
@@ -40,7 +40,7 @@ export const createAdoptions = async  (req,res) => {
 export const deleteAdoptions= async (req,res) => {
     const { id } = req.params
     try{
-         await AdoptingRegister.destroy({
+         await Adopter.destroy({
             where: {
                 id
             }
@@ -56,7 +56,7 @@ export const editAdoptions = async (req,res) => {
     try {
         const { name,lastname,identity_card, phone, email, address, occupation } = req.body
     
-        const editAdoption= await AdoptingRegister.findByPk(id)
+        const editAdoption= await Adopter.findByPk(id)
         editAdoption.name = name
         editAdoption.lastname = lastname
         editAdoption.identity_card = identity_card

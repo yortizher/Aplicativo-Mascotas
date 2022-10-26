@@ -3,7 +3,7 @@ import { db } from "../db/db.js";
 
 const { STRING, BOOLEAN, INTEGER } = DataTypes
 
-        export const AdoptingRegister = db.define('adopting',{
+        export const Adopter = db.define('adopting',{
         id: {
             type: INTEGER,
             primaryKey: true,
