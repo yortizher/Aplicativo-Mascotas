@@ -13,6 +13,9 @@ const { STRING, INTEGER } = DataTypes
         name:{
             type: STRING,
         },
+        city:{
+            type: STRING
+        },
         address:{ 
             type: STRING
         }

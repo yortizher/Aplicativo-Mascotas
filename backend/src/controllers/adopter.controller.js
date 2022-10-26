@@ -1,4 +1,4 @@
-import { AdoptingRegister } from '../models/adopting.model.js'
+import { AdoptingRegister } from '../models/adopter.model.js'
 
 export const adopting = async (req,res) => {
     try{

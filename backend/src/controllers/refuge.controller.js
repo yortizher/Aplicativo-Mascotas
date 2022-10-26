@@ -7,7 +7,6 @@ export const refuges = async (req,res) => {
     }catch(err){
         console.log(err);
     }
-   
 }
 
 export const refugesById = async (req,res) => {
@@ -27,8 +26,8 @@ export const refugesById = async (req,res) => {
 }
 
 export const createRefuges = async  (req,res) => {
-    const { name, address } = req.body
-    if( !name || !address ){
+    const { name, address,city } = req.body
+    if( !name || !address || !city ){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
     const createRefuge = await Refuge.create({
@@ -54,12 +53,12 @@ export const deleteRefuges = async (req,res) => {
 export const editRefuges = async (req,res) => {
     const { id } = req.params
     try {
-        const { username, email, active } = req.body
+        const { name, address,city } = req.body
     
         const editRefuge= await Refuge.findByPk(id)
-        editUser.username = username
-        editUser.email = email
-        editUser.active = active
+        editRefuge.name = name
+        editRefuge.address = address
+        editRefuge.city = city
         await editRefuge.save()
     
         res.json(editRefuge)
