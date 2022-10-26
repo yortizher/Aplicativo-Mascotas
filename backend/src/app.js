@@ -1,7 +1,10 @@
 import express from "express";
 import morgan from "morgan";
 import cors from 'cors'
-import { appRouter } from './routes/routes.js'
+import { raceRouter } from './routes/race.route.js'
+import { refugeRouter } from './routes/refuge.route.js'
+import { adoptingRouter } from './routes/adopting.route.js'
+import { rootRouter } from "./routes/welcome.route.js"
 
 const app = express();
 
@@ -9,7 +12,10 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended : false }))
-app.use(appRouter)
+app.use(rootRouter)
+app.use(raceRouter)
+app.use(refugeRouter)
+app.use(adoptingRouter)
 
 
 export default app;
