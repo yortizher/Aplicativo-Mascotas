@@ -7,6 +7,7 @@ export const adopting = async (req,res) => {
     }catch(err){
         console.log(err);
     }
+   
 }
 
 export const adoptingById = async (req,res) => {
@@ -26,21 +27,17 @@ export const adoptingById = async (req,res) => {
 }
 
 export const createAdoptions = async  (req,res) => {
-    try{
-        const { name, petname,description,gender,breed, specie, vaccine, identity_card, phone, address, occupation, email, status } = req.body
-        if( !name || !petname || !description || !gender || !breed || !specie || !vaccine ||  !identity_card || !phone || !address || !occupation || !email || !status ){
-            return res.status(400).json({error: "Uno o más campos vacios"})
-        }
-        const createAdoption = await PersonToRefuge.create({
-            name, petname,description,gender,breed, specie, vaccine, identity_card, phone, address, occupation,email, status})
-        res.json(createAdoption)
-    }catch(err){
-        console.error(err)
+    const { petname, date, owner_name, identity_card, phone, address, occupation } = req.body
+    if( !petname || !date || !owner_name || !identity_card || !phone || !address || !occupation ){
+        return res.status(400).json({error: "Uno o más campos vacios"})
     }
-   
+    const createAdoption = await PersonToRefuge.create({
+        petname, date, owner_name, identity_card, phone, address, occupation
+    })
+    res.json(createAdoption)
 }
 
-export const deleteAdoptions= async (req , res) => {
+export const deleteAdoptions= async (req,res) => {
     const { id } = req.params
     try{
          await PersonToRefuge.destroy({
@@ -57,23 +54,16 @@ export const deleteAdoptions= async (req , res) => {
 export const editAdoptions = async (req,res) => {
     const { id } = req.params
     try {
-        const { name, petname,description,gender,breed, specie, vaccine, identity_card, phone, address, occupation, email, status } = req.body
-
+        const { petname, date, owner_name, identity_card, phone, address, occupation } = req.body
+    
         const editAdoption= await PersonToRefuge.findByPk(id)
-        
-        editAdoption.name = name
         editAdoption.petname = petname
-        editAdoption.description = description 
-        editAdoption.gender = gender 
-        editAdoption.breed = breed 
-        editAdoption.specie = specie 
-        editAdoption.vaccine = vaccine
-        editAdoption.identity_card = identity_card 
-        editAdoption.phone = phone 
+        editAdoption.date = date
+        editAdoption.owner_name = owner_name
+        editAdoption.identity_card = identity_card
+        editAdoption.phone = phone
         editAdoption.address = address
-        editAdoption.occupation = occupation 
-        editAdoption.email = email 
-        editAdoption.status = status
+        editAdoption.occupation = occupation
         await editAdoption.save()
     
         res.json(editAdoption)

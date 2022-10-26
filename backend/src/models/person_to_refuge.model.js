@@ -1,50 +1,32 @@
 import {  DataTypes } from "sequelize";
 import { db } from "../db/db.js";
 
-const { STRING, BOOLEAN, INTEGER } = DataTypes
+const { STRING, INTEGER } = DataTypes
 
-export const PersonToRefuge = db.define('person_refuge',{
+export const PersonToRefuge = db.define('refuge_person',{ 
         id: {
             type: INTEGER,
             primaryKey: true,
-            autoIncrement: true,    
+            autoIncrement: true,
         },
-        name:{
-            type: STRING,
-            allowNull: false
-        },
-        petname:{ 
+        petname:{
             type: STRING,
             allowNull: false
         },
-        description: {
-            type: STRING,
-            allowNull: false
-        }, gender: {
+        date: {
             type: STRING,
             allowNull: false
         },
-        breed: {
-            type: STRING,
-            allowNull: false
-        },specie: {
-            type: STRING,
-            allowNull: false
-        },
-        vaccine: {
+        owner_name:{
             type: STRING,
             allowNull: false
         },
         identity_card:{ 
-            type: INTEGER,
-            allowNull: false,
+            type: STRING,
+            allowNull: false
         },
         phone:{ 
             type: INTEGER,
-            allowNull: false
-        },
-        email:{ 
-            type: STRING,
             allowNull: false
         },
         address:{ 
@@ -54,19 +36,8 @@ export const PersonToRefuge = db.define('person_refuge',{
         occupation:{ 
             type: STRING,
             allowNull: false
-        },
-        status: {
-            type:STRING,
-            defaultValue: 'disponible',
-            allowNull: false
         }
         })
-
-         
-
-
-
-        
 
 
         
