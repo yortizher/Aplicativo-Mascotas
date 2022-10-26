@@ -5,6 +5,7 @@ import { raceRouter } from './routes/race.route.js'
 import { refugeRouter } from './routes/refuge.route.js'
 import { adopterRouter } from './routes/adopter.route.js'
 import { rootRouter } from "./routes/welcome.route.js"
+import { registerRouter } from "./routes/register_adoption.route.js";
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(rootRouter)
 app.use(raceRouter)
 app.use(refugeRouter)
 app.use(adopterRouter)
+app.use(registerRouter)
 
 export default app;
