@@ -1,7 +1,5 @@
 <template>
-   <div class="container w-50 my-5">
-    <h1>Dar en adopción</h1>
-    <form>
+    <form class="container w-50">
         <div class="mb-3">
             <label for="exampleInput" class="form-label">Nombre Mascota</label>
             <input type="text" class="form-control" id="exampleInput" aria-describedby="exampleHelp">
@@ -32,13 +30,16 @@
         </div>
         <div class="mb-3">
             <label for="exampleInput2" class="form-label">Genero</label>
-            <input type="text" class="form-control" id="exampleInput2">
+             <select  name="seleccionProducto" id="seleccionProducto" class="form-select  text-center">
+                <option>Seleccione</option>
+             </select>
         </div>
           <div class="mb-3">
             <label for="exampleInput2" class="form-label">Estado</label>
-            <input type="text" class="form-control" id="exampleInput2">
+              <select  name="seleccionProducto" id="seleccionProducto" class="form-select  text-center">
+                <option>Seleccione</option>
+             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Dar en Adopción</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-   </div>
 </template>
