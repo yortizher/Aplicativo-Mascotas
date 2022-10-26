@@ -1,14 +1,13 @@
-<script setup> 
-  
-import   CategoryRegistration from './views/CategoryRegistration.vue';
+<script setup>
 
+import   Home from './views/Home.vue';
+import { RouterLink,RouterView } from "vue-router";
 </script>
 
 <template>
 
-<CategoryRegistration/>
-
-
+  <Home/>
+  <RouterView />
 </template>
 
 <style scoped>

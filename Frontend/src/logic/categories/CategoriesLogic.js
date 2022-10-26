@@ -15,4 +15,6 @@ const arrayFrutas = [
         description: "Una naranja",
     },
 ];
+// const {answer,image} = await fetch("https://yesno.wtf/api").then(r => r.json())
+
 export default arrayFrutas
