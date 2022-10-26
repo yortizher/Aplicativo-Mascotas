@@ -74,3 +74,14 @@
   </nav>
   
 </template>
+<style scoped>
+.dropdown-item {
+  background-color: white;
+  color: black;
+}
+.dropdown-item:hover {
+  background-color: rgb(139, 235, 248);
+  color: black;
+}
+
+</style>
