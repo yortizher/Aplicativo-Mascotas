@@ -3,7 +3,7 @@ defineProps({
   title1: String,
   title2: String,
   title3: String,
-  arrayFrutas: {
+  dataPet: {
     type: Array,
     required: true,
   },
@@ -22,7 +22,7 @@ defineProps({
           </tr>
         </thead>
         <tbody class="table-group-divider text-center">
-          <tr class="body" v-for="item in arrayFrutas" :key="item.name">
+          <tr class="body" v-for="item in dataPet" :key="item.name">
             <td v-text="item.name"></td>
             <td v-text="item.price"></td>
             <td>

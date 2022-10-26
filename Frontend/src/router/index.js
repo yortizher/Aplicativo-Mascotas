@@ -8,15 +8,36 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home
+
+    },
+    {
+      path: '/Adoption',
+      name: 'Adoption',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Adoption.vue')
+    },
+    {
+      path: '/BreedRegistry',
+      name: 'BreedRegistry',
+      component: () => import('../views/BreedRegistry.vue')
     },
     {
       path: '/CategoryRegistration',
       name: 'CategoryRegistration',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/CategoryRegistration.vue')
-    }
+    },
+    {
+      path: '/GiveAdoption',
+      name: 'GiveAdoption',
+      component: () => import('../views/GiveAdoption.vue')
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import("../views/NoPageFound.vue"),
+  },
   ]
 })
 
