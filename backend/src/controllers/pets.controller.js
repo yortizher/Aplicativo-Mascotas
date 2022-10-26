@@ -29,12 +29,12 @@ export const petsById = async (req,res) => {
 }
 
 export const createPets = async  (req,res) => {
-    const { name,age,img, status } = req.body
-    if( !name || !age ||  !img || !status){
+    const { name,age,img,race_id,refuge_id, status } = req.body
+    if( !name || !age ||  !img ||!refuge_id || !race_id || !status){
         return res.status(400).json({error: "Uno o más campos vacios"})
     }
     const createPets = await Pets.create({
-        name,age,img,status
+        name,age,img,status, race_id, refuge_id
     })
     res.json(createPets)
 }

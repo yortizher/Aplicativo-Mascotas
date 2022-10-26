@@ -1,6 +1,6 @@
 import {  DataTypes } from "sequelize";
 import { db } from "../db/db.js";
-import {Race} from "./race.model.js"
+
 
 const { STRING, INTEGER } = DataTypes
 

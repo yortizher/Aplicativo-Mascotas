@@ -15,12 +15,7 @@ export const Race = db.define('race',{
     species_id: { 
         type: INTEGER,
         allowNull: false,
-        references: {
-            model: 'species', // 'fathers' refers to table name
-            key: 'id', // 'id' refers to column name in fathers table
-         },
          },
    
     })
 
- Race.hasOne(Species,{allowNull: false})
