@@ -4,19 +4,34 @@ import { db } from "../db/db.js";
 const { STRING, INTEGER } = DataTypes
 
 
-         export const Refuge = db.define('refuge',{
+export const RefugeToPerson = db.define('refuge_person',{ 
         id: {
             type: INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        name:{
+        petname:{
             type: STRING,
         },
-        city:{
+        date: {
             type: STRING
+        },
+        owner_name:{
+            type: STRING
+        },
+        identity_card:{ 
+            type: STRING
+        },
+        phone:{ 
+            type: INTEGER
         },
         address:{ 
             type: STRING
+        },
+        occupation:{ 
+            type: STRING
         }
         })
+
+
+        
