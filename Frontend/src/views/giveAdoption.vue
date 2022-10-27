@@ -1,44 +1,9 @@
+<script setup>
+ import RegisterPet from '../components/form/RegisterPet.vue'
+</script>
 <template>
    <div class="container w-50 my-5">
     <h1>Dar en adopción</h1>
-    <form>
-        <div class="mb-3">
-            <label for="exampleInput" class="form-label">Nombre Mascota</label>
-            <input type="text" class="form-control" id="exampleInput" aria-describedby="exampleHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Nombre Dueño</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Edad</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Vacunas</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Raza</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Categoria</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Genero</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-          <div class="mb-3">
-            <label for="exampleInput2" class="form-label">Estado</label>
-            <input type="text" class="form-control" id="exampleInput2">
-        </div>
-        <button type="submit" class="btn btn-primary">Dar en Adopción</button>
-    </form>
+    <RegisterPet/>
    </div>
 </template>
