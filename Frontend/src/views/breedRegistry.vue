@@ -1,5 +1,9 @@
-<script>
-import  NuevaTabla from '../components/module-categories/Tabla.vue';
+<script setup>
+import  Tabla from '../components/module-categories/Tabla.vue';
+import DBRace from '../logic/Race/DBBRace'
+
+
+const dataPet = DBRace 
 
 </script>
 
@@ -10,13 +14,15 @@ import  NuevaTabla from '../components/module-categories/Tabla.vue';
                 <h1>Registro de razas</h1>
             </div>
             <div class="col-md-4 offset-md-4 m-1">
-                <button type="button"  class="btn btn-success float-end" data-bs-target="#exampleModal"><h3 >Nuevo</h3></button>
+               
+                <button type="button"  class="btn btn-success float-end" data-bs-target="#exampleModal">Nuevo</button>
             </div>
+            
         </div>
-        <NuevaTabla
-            title1="Indice"
+        <Tabla
             title2="Nombre"
             title3="Opciones"
+            :dataPet="dataPet"
         />
     </div>
   
