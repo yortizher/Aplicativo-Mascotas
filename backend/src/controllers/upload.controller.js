@@ -4,7 +4,7 @@ export const uploadImages =  async (req, res) => {
     try {
         const fileStr = req.body.data;
         const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-            upload_preset: 'dev_setups',
+            upload_preset: 'pets_folder',
         });
         console.log(uploadResponse);
         res.json({ msg: 'Image Uploaded successfully' });
