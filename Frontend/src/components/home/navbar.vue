@@ -4,8 +4,8 @@
 </Script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid m-1">
       <a class="navbar-brand" href="#">Navbar</a>
       <button
         class="navbar-toggler"
@@ -74,3 +74,22 @@
   </nav>
   
 </template>
+<style scoped>
+.dropdown-item {
+  background-color: white;
+  color: black;
+}
+.dropdown-item:hover {
+  background-color:blue;
+  color: rgb(228, 223, 223);
+}
+.navbar{
+  font-size: 130%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color:rgb(169, 173, 173);
+}
+ .router-link-exact-active{ 
+        color: blue !important;
+    }
+    /* class="router-link-active router-link-exact-active nav-link active" */
+</style>
