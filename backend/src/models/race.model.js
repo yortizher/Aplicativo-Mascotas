@@ -11,11 +11,7 @@ export const Race = db.define('race',{
     },
     name:{ 
         type: STRING
-    },
-    species_id: { 
-        type: INTEGER,
-        allowNull: false,
-         },
+    }
    
     })
 
