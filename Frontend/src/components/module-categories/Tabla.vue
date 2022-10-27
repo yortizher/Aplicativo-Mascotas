@@ -14,7 +14,7 @@ defineProps({
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
-          <tr class="text-center">
+          <tr>
             <th scope="col">
               <h3>{{ title2 }}</h3>
             </th>
@@ -23,11 +23,17 @@ defineProps({
             </th>
           </tr>
         </thead>
-        <tbody class="table-group-divider text-center">
-          <tr class="body table-primary" v-for="item in dataPet" :key="item.name">
-            <td v-text="item.price"></td>
+        <tbody class="table-group-divider">
+          <tr class="body" v-for="item in dataPet" :key="item.name">
+            <td v-text="item.name"></td>
             <td style="width: 120px">
-              <button title="Eliminar" type="button" class="btn btn-danger me-3">
+              <button
+                title="Eliminar"
+                type="button"
+                class="btn btn-danger me-3"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal06"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -49,7 +55,6 @@ defineProps({
               <button
                 type="button"
                 class="btn btn-success"
-                @click="getArray(index)"
                 title="Editar"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
