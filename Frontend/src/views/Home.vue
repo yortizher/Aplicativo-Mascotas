@@ -1,14 +1,7 @@
 <script setup>
-
+import Carrusel  from "../components/home/Carrusel.vue";
 </script>
 
 <template>
-   <h1>
-        carrusel
-    </h1>
-    <h1>Contenido
-    </h1>
-    <h1>
-        Footer
-    </h1>
+   <Carrusel/>
 </template>
