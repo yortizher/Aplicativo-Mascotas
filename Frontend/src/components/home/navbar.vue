@@ -4,9 +4,10 @@
 </Script>
 
 <template>
-  <nav class="navbar navbar-expand-lg ">
-    <div class="container-fluid m-1">
-      <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <router-link to="/"  class="navbar-brand" href="#"><span class="text-info">Adopta</span>me <i class="fa-solid fa-paw"></i></router-link
+            >
       <button
         class="navbar-toggler"
         type="button"
@@ -18,8 +19,10 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <!-- separarlo -->
+        <ul class="navbar-nav  ms-auto mb-2 mb-lg-0"> 
           <li class="nav-item">
             <router-link
               to="/"
@@ -75,6 +78,7 @@
   
 </template>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 .dropdown-item {
   background-color: white;
   color: black;
@@ -85,11 +89,40 @@
 }
 .navbar{
   font-size: 130%;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color:rgb(169, 173, 173);
 }
  .router-link-exact-active{ 
-        color: blue !important;
-    }
-    /* class="router-link-active router-link-exact-active nav-link active" */
+  color: blue !important;
+}
+    
+*{
+  font-family: 'Montserrat', sans-serif;
+
+}
+.body{
+  background: f1fbff;
+}
+.section-padding{
+  padding: 100px 0;
+}
+.navbar-nav {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.navbar-light .navbar-brand{
+  color: #000;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 700; 
+  letter-spacing: 2px;
+}
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover{
+  color: #000;
+}
+.w-100{
+  height: 100vh;
+}
+
 </style>

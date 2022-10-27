@@ -13,7 +13,7 @@ const dataPet = CategoriesLogic;
         <h1>Registro de categorias</h1>
       </div>
       <div class="col-md-4 offset-md-4 m-1">
-        <button type="button"  class="btn btn-sm  btn-success d-flex flex-row-reverse"><h6 >Nuevo</h6></button>
+        <button type="button"  class="btn btn-sm  btn-success ms-auto"><h6 >Nuevo</h6></button>
       </div>
     </div>
       <CategoriesLogic />
