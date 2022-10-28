@@ -86,10 +86,6 @@
                  <AdoptionModal :pet="petSelected"/>   
                 </div>
             </div>
-           
         </div>
-        
     </div> 
-    <!-- <Modal/> -->
-
 </template>

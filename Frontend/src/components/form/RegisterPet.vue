@@ -1,184 +1,156 @@
 <script setup>
 import { reactive, ref } from "vue";
 
-//  let race = ["schnauzer","Doderman", "West Highland"]
-//  let category = ["Categoria1","Categoria2", "Categoria3"]
-//  let gender = ["Hembra", "Macho"]
-//  let namePet = "" 
-//  let nameOwner = ""
-//  let description = ""
-//  let age = 0
-//  let vaccines = ""
-//  let optionRace = ""
-//  let optionGender = ""
-//  let optionCategory = ""
-let race = reactive(["schnauzer","Doderman", "West Highland"])
-let category = reactive(["Categoria1","Categoria2", "Categoria3"])
-let gender = reactive(["Hembra", "Macho"])
-let namePet = ref("") 
-let nameOwner = ref("")
-let description = ref("")
-let age = ref(0)
-let vaccines = ref("")
-let optionRace = ref("") 
-let optionGender = ref("")
-let optionCategory = ref("")
-let errorDescription = false
-let errorNamePet = false
-let errorNameOwner = false
-let errorAge = false
-let errorVaccines = false 
-let errorSeleccionRace = false
-let errorSeleccionCategory  = false
-let errorSeleccionGender = false 
-// let errorNamePet = ref(false)
-// let errorNameOwner = ref(false)
-// let errorAge = ref(false)
-// let errorVaccines = ref(false) 
-// let errorSeleccionRace = ref(false)
-// let errorSeleccionCategory  = ref(false)
-// let errorSeleccionGender = ref(false) 
-// let errorSeleccionGender = ref(false) 
-// let errorDescription = ref(false)
+const race = reactive(["schnauzer","Doderman", "West Highland"]);
+const category = reactive(["Categoria1","Categoria2", "Categoria3"]);
+const gender = reactive(["Hembra", "Macho"]);
 
-function addEmployeesData() {
-    fieldValidations()? error:handleSubmit();
-}
+const formPet = reactive({
+    namePet : '', 
+    description : '',
+    age : 0,
+    vaccines : '',
+    optionRace: '',
+    optionGender : '',
+    optionCategory : '',
+})
 
-function fieldValidations() {
-    error = false;
-    if (age === "" || age <= 0 || typeof age !== "number") {
-        errorAge = true;
-        error = true;
+const formErrorPet = reactive({
+    gender : false,
+    namePet : false, 
+    description : false,
+    age : false,
+    vaccines : false,
+    seleccionRace : false,
+    seleccionGender: false,
+    seleccionCategory : false,
+    })
+
+const petsAdoption = reactive([]);
+let errorPet = ref(false);
+
+function fieldValidationsPet() {
+    errorPet = false;
+    if (formPet.age === "" || formPet.age <= 1) {
+        formErrorPet.age = true;
+        errorPet = true;
     } else {
-        errorAge = false;
+       formErrorPet.age = false;
     }
-    if (namePet === "") {
-        errorNamePet = true;
-            error = true;
+    if (formPet.namePet === "") {
+       formErrorPet.namePet = true;
+        errorPet = true;
     } else {
-        errorNamePet = false;
+       formErrorPet.namePet = false;
     }
-    if (nameOwner === "") {
-        errorNameOwner = true;
-        error = true;
+    if (formPet.description === "") {
+       formErrorPet.description = true;
+        errorPet = true;
     } else {
-        errorNameOwner = false;
+        formErrorPet.description = false;
     }
-    // if (description === "") {
-    //     errorDescription = true;
-    //     error = true;
-    // } else {
-    //     errorDescription = false;
-    // }
-     if (vaccines === "") {
-        errorVaccines = true;
-        error = true;
+     if (formPet.vaccines === "") {
+        formErrorPet.vaccines = true;
+        errorPet = true;
     } else {
-        errorVaccines = false;
+       formErrorPet.vaccines = false;
     } 
-    if(optionRace === "") {
-        errorSeleccionRace = true;
+    if(formPet.optionRace === "") {
+       formErrorPet.seleccionRace = true;
+       errorPet = true;
     } else {
-       errorSeleccionRace = false;
+      formErrorPet.seleccionRace = false;
     }
-    if(optionGender === "") {
-        errorSeleccionCategory = true;
+    if(formPet.optionGender === "") {
+       formErrorPet.seleccionGender = true;
+       errorPet = true;
     } else {
-       errorSeleccionCategory = false;
+       formErrorPet.seleccionGender = false;
     }
-    if(optionCategory === "") {
-        errorSeleccionGender = true;
+    if(formPet.optionCategory === "") {
+       formErrorPet.seleccionCategory = true;
     } else {
-       errorSeleccionGender = false;
+       formErrorPet.seleccionCategory = false;
     }
-    return error;
+    return errorPet;
 }
-// export default {
-//     setup(){
-//         let race = reactive(["schnauzer","Doderman", "West Highland"])
-//         let category = reactive(["Categoria1","Categoria2", "Categoria3"])
-//         let gender = reactive(["Hembra", "Macho"])
-//         let namePet = ref("") 
-//         let nameOwner = ref("")
-//         let description = ref("")
-//         let age = ref(0)
-//         let vaccines = ref("")
-//         let optionRace = ref("")
-//         let optionGender = ref("")
-//         let optionCategory = ref("")
-//     }
-// }
-function handleSubmit() {
-    // alert(namePet,age, vaccines, nameOwner, description)
-   
-    }
+
+const addPet = () => {
+    petsAdoption.push(formPet)
+    message(
+      "center",
+      "Registro exitoso",
+      "Se ha guardado correctamente",
+      1500,
+    )
+}
+
+const handleSubmitPet = () => fieldValidationsPet()? errorPet : addPet();
+
+const message = (position,title,text,time) => {
+    Swal.fire({
+    position: position,
+    icon: 'success',
+    title: title,
+    text: text,
+    showConfirmButton: false,
+    timer: time,
+  })
+  };
 </script>
 <template>
-<!-- @submit.prevent="handleSubmit" -->
-    <form class="container w-80" >
+     <h3>Mascota</h3>
+    <form class="container w-50"  @submit.prevent="handleSubmitPet">
         <div class="row mt-3 mb-2 mx-2">
              <div class="col mb-3">
-                <label for="namePet" class="form-label">Nombre Mascota</label>
-                <input type="text" class="form-control" id="namePet" aria-describedby="exampleHelp" v-model="namePet">
-                <span class="error" style="color: red" v-if="errorNamePet">El campo nombre de la mascota debe ser un dato valido</span>
+                <label for="namePet" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="namePet" aria-describedby="exampleHelp" v-model="formPet.namePet">
+                <span class="error" style="color: red" v-if="formErrorPet.namePet">El campo nombre de la mascota debe ser un dato valido</span>
             </div>
-            <div class="col mb-3">
-                <label for="nameOwner" class="form-label">Nombre Dueño</label>
-                <input type="text" class="form-control" id="nameOwner" v-model="nameOwner">
-                <span class="error" style="color: red" v-if="errorNameOwner">El campo nombre del dueño debe ser un dato valido</span>
+             <div class="col mb-3">
+                <label for="age" class="form-label">Edad</label>
+                <input type="text" class="form-control" id="age" v-model="formPet.age">
+                <span class="error" style="color: red" v-if="formErrorPet.age">El campo edad debe ser un dato valido</span>
             </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
             <div class="col mb-3">
-                <label for="age" class="form-label">Edad</label>
-                <input type="text" class="form-control" id="age" v-model="age">
-                <span class="error" style="color: red" v-if="errorAge">El campo edad debe ser un dato valido</span>
-            </div>
-            <div class="col mb-3">
                 <label for="vaccines" class="form-label">Vacunas</label>
-                <input type="text" class="form-control" id="vaccines" v-model="vaccines">
-                <span class="error" style="color: red" v-if="errorVaccines">El campo vacunas debe ser un dato valido</span>
+                <input type="text" class="form-control" id="vaccines" v-model="formPet.vaccines">
+                <span class="error" style="color: red" v-if="formErrorPet.vaccines">El campo vacunas debe ser un dato valido</span>
+            </div>
+             <div class="col mb-3">
+                <label for="seleccionGender" class="form-label">Género</label>
+                <select  v-model="formPet.optionGender" name="seleccionGender" id="seleccionGender" class="form-select  text-center">
+                    <option v-for="(item,index) in gender" v-text="item"></option>
+                </select>
+                 <span class="error" style="color: red" v-if="formErrorPet.seleccionGender">El campo género debe ser un dato valido</span>
             </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
             <div class="col mb-3">
                 <label for="race" class="form-label">Raza</label>
-                <select v-model="optionRace"  name="seleccionRace" id="seleccionRace" class="form-select text-center">
+                <select v-model="formPet.optionRace"  name="seleccionRace" id="seleccionRace" class="form-select text-center">
                     <option v-for="(item,index) in race" v-text="item"></option>
                 </select>
-                <span class="error" style="color: red" v-if="errorSeleccionRace">El campo raza debe ser un dato valido</span>
+                <span class="error" style="color: red" v-if="formErrorPet.seleccionRace">El campo raza debe ser un dato valido</span>
             </div>
             <div class="col mb-3">
                 <label for="seleccionCategory" class="form-label">Categoría</label>
-                <select  v-model="optionCategory" name="seleccionCategory" id="seleccionCategory" class="form-select  text-center">
+                <select  v-model="formPet.optionCategory" name="seleccionCategory" id="seleccionCategory" class="form-select  text-center">
                     <option v-for="(item,index) in category" v-text="item"></option>
                 </select>
-                 <span class="error" style="color: red" v-if="errorSeleccionCategory">El campo categoría debe ser un dato valido</span>
-            </div>
-        </div>
-        <div class="row mt-3 mb-2 mx-2">
-            <div class="col mb-3">
-                <label for="seleccionGender" class="form-label">Género</label>
-                <select  v-model="optionGender" name="seleccionGender" id="seleccionGender" class="form-select  text-center">
-                    <option v-for="(item,index) in gender" v-text="item"></option>
-                </select>
-                 <span class="error" style="color: red" v-if="errorSeleccionGender">El campo género debe ser un dato valido</span>
+                 <span class="error" style="color: red" v-if="formErrorPet.seleccionCategory">El campo categoría debe ser un dato valido</span>
             </div>
         </div>
          <div class="row mt-3 mb-2 mx-2">
             <div class="col mb-3">
-                <label for="Description" class="form-label">Descripción</label>
-                <textarea  id="Description" class="form-control" name="w3review" rows="4" cols="50" v-model="description">
-                
+                <label for="description" class="form-label">Descripción</label>
+                <textarea  id="description" class="form-control" name="description" rows="4" cols="50" v-model="formPet.description">    
                 </textarea>
-                 <span class="error" style="color: red" v-if="errorDescription">El campo Descripción debe ser un dato valido</span>
+                 <span class="error" style="color: red" v-if="formErrorPet.description">El campo Descripción debe ser un dato valido</span>
             </div>
         </div>
-        <!-- <button type="submit" class="btn btn-primary">Guardar</button> -->
-        <button type="button" class="btn btn-primary" @click="handleSubmit">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-    <div>
-        {{namePet}}
-    </div>
 </template>
