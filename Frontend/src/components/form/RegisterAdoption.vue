@@ -2,6 +2,7 @@
 import { reactive, ref } from "vue";
 import { RouterLink } from 'vue-router'
 
+
 const form = reactive({
         name: '',
         identification: '',
@@ -62,7 +63,7 @@ function fieldValidations() {
     }
     return error;
 }
-const addPerson = () => {
+const addPerson = (e) => {
     persons.push(form)
     message(
       "center",
@@ -70,6 +71,7 @@ const addPerson = () => {
       "Se ha guardado correctamente",
       1500,
     )
+    e.target.reset();
 }
 const message = (position,title,text,time) => {
     Swal.fire({
@@ -81,59 +83,84 @@ const message = (position,title,text,time) => {
     timer: time,
   })
   };
-const  handleSubmit = () => fieldValidations()? error : addPerson();
-function clearForm() {
-        form.name = '';
-        form.identification = '';
-        form.direction = '';
-        form.phone = '';
-        form.email = '';
-        form.profession = '';        
-}
+const  handleSubmit = (e) => fieldValidations()? error : addPerson(e);
+
 
 </script>
 <template>
-      <h3>Persona</h3>
-     <form class="container w-50" @submit.prevent="handleSubmit">
+     <form class="container contents w-100" @submit.prevent="handleSubmit">
         <div class="row mt-3 mb-2 mx-2">
-        <div class="col mb-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="name" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="form.name">
             <span class="error" style="color: red" v-if="formError.name">El campo nombre debe ser un dato valido</span>
         </div>
-        <div class="col mb-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="identification" class="form-label">Cédula</label>
             <input type="text" class="form-control" id="identification" v-model="form.identification">
             <span class="error" style="color: red" v-if="formError.identification">El campo cédula de la mascota debe ser un dato valido</span>
         </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
-         <div class="col mb-3">
+         <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="direction" class="form-label">Dirección</label>
             <input type="text" class="form-control" id="direction" v-model="form.direction">
             <span class="error" style="color: red" v-if="formError.direction">El campo dirección de la mascota debe ser un dato valido</span>
         </div>
-         <div class="col mb-3">
+         <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="phone" class="form-label">Teléfono</label>
             <input type="text" class="form-control" id="phone" v-model="form.phone">
             <span class="error" style="color: red" v-if="formError.phone">El campo teléfono de la mascota debe ser un dato valido</span>
         </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
-        <div class="col mb-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" v-model="form.email">
             <span class="error" style="color: red" v-if="formError.email">El campo email de la mascota debe ser un dato valido</span>
         </div>
-         <div class="col mb-3">
+         <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="profession" class="form-label">Profesión</label>
             <input type="text" class="form-control" id="profession" v-model="form.profession">
             <span class="error" style="color: red" v-if="formError.profession">El campo profesión de la mascota debe ser un dato valido</span>
         </div>
         </div>
-        <div>
-            <button type="submit" class="btn btn-primary">Sí</button>
-            <RouterLink to="/Adoption" class="btn btn-primary">No</RouterLink>
+        <div class="container-btn">
+             <button type="submit" class="btn btn-info ">Sí</button>
+            <RouterLink to="/Adoption" class="btn btn-info ">No</RouterLink>
         </div>
     </form>
 </template>
+<style scoped>
+
+.container-btn {
+    display: flex;
+    flex-direction: column;
+}
+.btn {
+    width: 50%;
+    margin: 2px auto 8px;
+}
+ @media (min-width: 768px) {
+  
+    .btn {
+        width: 40%;
+        margin: 2px auto 8px;
+    }
+    .container-btn {
+    display: flex;
+    flex-direction: row;
+}
+    
+ }
+@media (min-width: 1024px) { 
+    .btn {
+        width: 20%;
+        padding: 5px 10px;
+        margin: 2px 20px;   
+    }
+} 
+
+
+
+</style>
