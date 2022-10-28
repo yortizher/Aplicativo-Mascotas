@@ -1,12 +1,12 @@
 <script setup>
-    import { reactive } from '@vue/reactivity'
+    import { reactive, ref } from '@vue/reactivity'
     import Card from '../components/card/Card.vue'
     import { useRouter, useRoute } from 'vue-router'
     import { RouterLink, RouterView } from 'vue-router'
-    import Modal from '../components/modal/Modal.vue'
+    import AdoptionModal from '../components/modal/AdoptionModal.vue'
   
      const route = useRouter();
-    // console.log(params.id)
+     const petSelected = ref({});
     
     let pets = [
          {
@@ -62,9 +62,9 @@
     ])
     
     
-    function adoption(name) {
-       route.push({path:`/Adoption/${name}`})
-    }
+    const adoption = name => route.push(`/Adoption/${name}`)
+    const setPetSelected = (pet) => petSelected.value = {...pet}
+    
 </script>
 <template>
     <h1>Adoptar</h1>
@@ -76,18 +76,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{pet.name}}</h5>
                         <p class="card-text">{{pet.description}}</p>
-                        <!-- <router-link :to={{}} data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Ver más</router-link> -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
+                        <a href="#" @click="setPetSelected(pet)" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
                     </div>
-                    <!-- <div class="d-grid gap-2 mb-3 mt-5 text-center">
-                      <router-link :to={{/AdoptionRegister/pet.name}} href="#">Adoptar</router-link>
-                    </div> -->
                     <div class="card-footer">
                         <small class="text-muted">
                             <button @click="adoption(pet.name)">Adoptar</button>
                         </small>
                     </div>
-                 <Modal />   
+                 <AdoptionModal :pet="petSelected"/>   
                 </div>
             </div>
            
