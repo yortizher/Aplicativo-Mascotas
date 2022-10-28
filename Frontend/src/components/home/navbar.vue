@@ -6,7 +6,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <router-link to="/"  class="navbar-brand" href="#"><span class="text-info">Adopta</span>me <i class="fa-solid fa-paw"></i></router-link
+      <router-link to="/" class="navbar-brand " href="#"><span class="text-info">Adopta</span><span class="text-dark">me <i class="fa-solid fa-paw"></i></span></router-link
             >
       <button
         class="navbar-toggler"
@@ -85,7 +85,8 @@
 }
 .dropdown-item:hover {
   background-color:blue;
-  color: rgb(228, 223, 223);
+  color: #fff;
+  opacity: 0.8;
 }
 .navbar{
   font-size: 130%;
