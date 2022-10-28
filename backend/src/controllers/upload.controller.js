@@ -1,16 +1,15 @@
 import { cloudinary } from "../helpers/helper.js";
 
 export const uploadImages =  async (req, res) => {
+    const  {tempFilePath:fileStr}  = req.files.image
     try {
-        const fileStr = req.body.data;
-        const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-            upload_preset: 'pets_folder',
-        });
-        console.log(uploadResponse);
-        res.json({ msg: 'Image Uploaded successfully' });
+        
+        const uploadResponse = await cloudinary.uploader.upload(fileStr, {upload_preset: "pets_folder"})
+        const { secure_url } = uploadResponse;
+        res.json({msg: "Image Uploaded successfully",  secure_url});
 
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ err: 'Something went wrong' });
+        console.log('parameter',fileStr);
+        res.status(500).json({ err});
     }
 }
