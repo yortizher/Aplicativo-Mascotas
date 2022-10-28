@@ -35,12 +35,14 @@ const validationEdit = () => {
     getError1()     
   }else{
     editCategory()
+
     alert(
       "center",
       "Actualización completada",
       "Se ha actualizado correctamente la categoría",
       1500,
     )
+    close()
   }
   
 };
@@ -49,6 +51,11 @@ const editCategory = () => {
   name.value ="";
 
 };
+const close = () => {
+  const closeModal = document.getElementById('close');
+      closeModal.click();
+      
+  };
 const validationCreate = () => {
   getError2()
   if(error2.value == true ){
@@ -61,6 +68,7 @@ const validationCreate = () => {
       "Se ha creado correctamente la categoría",
       1500,
     )
+   
   }
   
 };
@@ -89,6 +97,7 @@ const alert = (position,title,text,time) => {
   timer: time,
 })
 };
+
 
 
 
@@ -137,6 +146,7 @@ const alert = (position,title,text,time) => {
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            id="close"
           ></button>
         </div>
         <div class="modal-body">
@@ -148,7 +158,7 @@ const alert = (position,title,text,time) => {
               id="floatingInput"
               placeholder="Nombre"
             />
-            <span v-if="error1"  class="text-danger">Por favor llene el nombre</span>
+            <span v-if="error1"   class="text-danger">Por favor llene el nombre</span>
             <label for="floatingInput">Nombre</label>
           </div>
         </div>
@@ -157,10 +167,11 @@ const alert = (position,title,text,time) => {
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
+            
           >
             Cerrar
           </button>
-          <button @click="validationEdit()"  type="button" class="btn btn-primary">Actualizar</button>
+          <button @click="validationEdit()"   type="button" class="btn btn-primary">Actualizar</button>
         </div>
       </div>
     </div>
