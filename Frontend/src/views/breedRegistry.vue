@@ -29,6 +29,12 @@ if (name1.value == "") {
 }
 };
 
+const close = () => {
+  const closeModal = document.getElementById('close');
+      closeModal.click();
+      
+  };
+
 const validationEdit = () => {
   getError1()
   if(error1.value == true ){
@@ -41,6 +47,7 @@ const validationEdit = () => {
       "Se ha actualizado correctamente la raza",
       1500,
     )
+    close()
   }
   
 };
@@ -109,7 +116,6 @@ const alertDelete = () => {
       </div>
     </div>
     <div class="row m-2 colors01"></div>
-    <CategoriesLogic />
     <Tabla title2="Nombre" title3="Opciones" :dataPet="dataPet" />
   </div>
 
@@ -133,6 +139,7 @@ const alertDelete = () => {
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            id="close"
           ></button>
         </div>
         <div class="modal-body">
