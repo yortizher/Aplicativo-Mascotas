@@ -47,8 +47,7 @@ const validationEdit = () => {
   
 };
 const editCategory = () => {
-  // metodo para la logica pertinente
-  name.value ="";
+// metodo para la logica pertinente
 
 };
 const close = () => {
@@ -74,7 +73,7 @@ const validationCreate = () => {
 };
 const createCategory = () => {
   // metodo para la logica pertinente
-   name1.value ="";
+ 
 };
 
 
@@ -107,10 +106,10 @@ const alert = (position,title,text,time) => {
 <template>
   <div class="container mt-5 aling-text-center">
     <div class="row">
-      <div class="col-md-4 align-self-start">
+      <div class="col-lg-11  col-md-6 col-sm-12 text-start" >
         <h1>Registro de categorías</h1>
       </div>
-      <div class="col-md-4 align-self-end">
+      <div class="col-lg-1 col-md-6 col-sm-12 text-start  btn">
         <button
           type="button"
           class="btn btn-info display-6"
@@ -122,7 +121,6 @@ const alert = (position,title,text,time) => {
       </div>
     </div>
     <div class="row m-2 colors01"></div>
-    <CategoriesLogic />
     <Tabla title2="Nombre" title3="Opciones" :dataPet="dataPet" />
   </div>
 
@@ -232,8 +230,8 @@ const alert = (position,title,text,time) => {
     </div>
   </div>
   <!-- Fin modal crear -->
-  <!-- Modal eliminar -->
-  <div
+   <!-- Modal eliminar -->
+   <div
     class="modal fade"
     id="exampleModal06"
     tabindex="-1"
@@ -275,7 +273,8 @@ const alert = (position,title,text,time) => {
 </template>
 
 <style scoped>
-/* .container .colors01{
-  background-color: rgb(2, 2, 2);
-} */
+.btn{
+  color: white;
+}
+
 </style>
