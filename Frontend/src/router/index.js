@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-// import RegisterAdoption from '../components/form/RegisterAdoption'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,8 +21,8 @@ const router = createRouter({
     },
     {
       path:'/Adoption/:id',
-      name: 'AdoptionRegister',
-      component: () => import('../components/form/RegisterAdoption.vue')
+      name: 'AdoptionForm',
+      component: () => import('../views/AdoptionForm.vue')
     },
     {
       path: '/BreedRegistry',

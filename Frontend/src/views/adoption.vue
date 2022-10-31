@@ -1,12 +1,11 @@
 <script setup>
-    import { reactive } from '@vue/reactivity'
-    import Card from '../components/card/Card.vue'
+    import { reactive, ref } from 'vue'
     import { useRouter, useRoute } from 'vue-router'
     import { RouterLink, RouterView } from 'vue-router'
-    import Modal from '../components/modal/Modal.vue'
+    import AdoptionModal from '../components/modal/AdoptionModal.vue'
   
      const route = useRouter();
-    // console.log(params.id)
+     const petSelected = ref({});
     
     let pets = [
          {
@@ -62,38 +61,93 @@
     ])
     
     
-    function adoption(name) {
-       route.push({path:`/Adoption/${name}`})
-    }
+    const adoption = name => route.push(`/Adoption/${name}`)
+    const setPetSelected = (pet) => petSelected.value = {...pet}
+    
 </script>
 <template>
-    <h1>Adoptar</h1>
-    <div class="d-flex container">
+    <h1 class="title">Adoptar</h1>
+    <div class="d-flex container cards">
         <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets" :key="pet.id">
-            <div class="col w-75">
+            <div class="col w-75 mb-3">
                 <div class="card h-100">
-                    <img :src="pet.photo" class="card-img-top" alt="..." width="280" height="280">
+                    <img :src="pet.photo" class="card-img-top img" alt="foto de la mascota">
                     <div class="card-body">
-                        <h5 class="card-title">{{pet.name}}</h5>
+                        <h5 class="card-title text-info">{{pet.name}}</h5>
                         <p class="card-text">{{pet.description}}</p>
-                        <!-- <router-link :to={{}} data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Ver más</router-link> -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
+                        <a href="#"  class="d-flex justify-content-end ancla" @click="setPetSelected(pet)" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
                     </div>
-                    <!-- <div class="d-grid gap-2 mb-3 mt-5 text-center">
-                      <router-link :to={{/AdoptionRegister/pet.name}} href="#">Adoptar</router-link>
-                    </div> -->
                     <div class="card-footer">
                         <small class="text-muted">
-                            <button @click="adoption(pet.name)">Adoptar</button>
+                            <button @click="adoption(pet.name)" class="btn btn-info display-6 d-grid">Adoptar</button>
                         </small>
                     </div>
-                 <Modal />   
+                 <AdoptionModal :pet="petSelected"/>   
                 </div>
             </div>
-           
         </div>
-        
     </div> 
-    <!-- <Modal/> -->
-
 </template>
+<style scoped>
+.title {
+    text-align: center;
+    margin-top: 10%;
+    color: #0d6efd;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;  
+  margin: 8% 12%;
+}
+
+.ancla:link {
+    color:#0d6efd;
+    text-decoration: none;
+}
+.ancla:visited {
+    color:#0000ff;
+    text-decoration: underline;
+}
+.ancla:hover {
+    color:#00c3ff;
+    text-decoration: underline;
+}
+
+.container {
+    margin-bottom: 5%;
+}
+.btn {
+    width: 100%;
+}
+ @media (min-width: 768px) {
+    .title {
+        margin-top: 8%;
+    }
+    .cards {
+        margin: 5% 25%;
+        width: 70%;
+    }  
+    .img {
+        width:70%;
+        height:70%;
+        margin: 2px auto;
+    }
+ }
+@media (min-width: 1024px) {
+   .title {
+        margin-top: 2%;
+    }
+    .cards {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin: 3% 8%;
+    }  
+    .img {
+        margin: 2px auto;
+    }
+} 
+
+
+</style>
