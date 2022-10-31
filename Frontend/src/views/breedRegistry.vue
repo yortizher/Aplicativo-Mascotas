@@ -100,10 +100,10 @@ const alertDelete = () => {
 <template>
   <div class="container mt-5 aling-text-center">
     <div class="row">
-      <div class="col-md-4 align-self-start">
+      <div class="col-lg-11  col-md-6 col-sm-12 text-start">
         <h1>Registro de razas</h1>
       </div>
-      <div class="col-md-4 align-self-end">
+      <div class="col-lg-1 col-md-6 col-sm-12 text-start  btn">
         <button
           type="button"
           class="btn btn-info display-6"
@@ -262,7 +262,7 @@ const alertDelete = () => {
 </template>
 
 <style scoped>
-/* .container .colors01{
-  background-color: rgb(2, 2, 2);
-} */
+.btn{
+color: white;
+}
 </style>
