@@ -2,14 +2,15 @@
 <script setup>
 import Tabla from "../components/module-categories/Tabla.vue";
 import DBBRace from "../logic/Race/DBBRace";
-import { ref } from "vue";
-const dataPet = DBBRace;
+
+import { onMounted,onUpdated,onUnmounted,onBeforeMount, ref, computed } from "vue";
 
 //
 const name = ref("");
 const name1 = ref("");
 const error1 = ref(false);
 const error2 = ref(false);
+const dataPet = ref([]);
 
 
 const getError1 = () => {
@@ -95,6 +96,18 @@ const alertDelete = () => {
     timer: time,
   })
   };
+  const  data= ()=>   {
+    // metodo para la logica pertinente
+        const urlData = "http://localhost:5000/api/v1/race"
+        fetch(urlData)
+        .then(response => response.json())
+        .then(data => dataPet.value=data)
+   };
+
+
+onMounted(() => {
+  data(); 
+})
 </script>
 
 <template>

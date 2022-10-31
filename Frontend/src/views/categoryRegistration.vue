@@ -2,14 +2,15 @@
 <script setup>
 import Tabla from "../components/module-categories/Tabla.vue";
 import CategoriesLogic from "../logic/categories/CategoriesLogic";
-import { ref } from "vue";
-const dataPet = CategoriesLogic;
+import { onMounted,onUpdated,onUnmounted,onBeforeMount, ref, computed } from "vue";
+
 //
 
 const name = ref("");
 const name1 = ref("");
 const error1 = ref(false);
 const error2 = ref(false);
+const dataPet = ref([]);
 
 
 const getError1 = () => {
@@ -34,20 +35,22 @@ const validationEdit = () => {
   if(error1.value == true ){
     getError1()     
   }else{
-    editCategory()
+    editCategory(dataPet.value)
 
-    alert(
+    close()
+  }
+  
+};
+const editCategory = (dat) => {
+// metodo para la logica pertinente
+console.log(dat)
+
+alert(
       "center",
       "Actualización completada",
       "Se ha actualizado correctamente la categoría",
       1500,
     )
-    close()
-  }
-  
-};
-const editCategory = () => {
-// metodo para la logica pertinente
 
 };
 const close = () => {
@@ -73,6 +76,8 @@ const validationCreate = () => {
 };
 const createCategory = () => {
   // metodo para la logica pertinente
+  //////
+ 
  
 };
 
@@ -97,10 +102,27 @@ const alert = (position,title,text,time) => {
 })
 };
 
+const  data= ()=>   {
+    // metodo para la logica pertinente
+        const urlData = "http://localhost:5000/api/v1/species"
+        fetch(urlData)
+        .then(response => response.json())
+        .then(data => dataPet.value=data)
+   };
+
+
+onMounted(() => {
+  data(); 
+})
 
 
 
+const miFavorito = ref("")
 
+
+const fijarFavorito = (item) => {
+    miFavorito.value = item;
+};
 </script>
 
 <template>
@@ -121,7 +143,7 @@ const alert = (position,title,text,time) => {
       </div>
     </div>
     <div class="row m-2 colors01"></div>
-    <Tabla title2="Nombre" title3="Opciones" :dataPet="dataPet" />
+    <Tabla title2="Nombre" title3="Opciones" :dataPet="dataPet"  @fijarFavorito="fijarFavorito" />
   </div>
 
   <!-- Modal editar -->

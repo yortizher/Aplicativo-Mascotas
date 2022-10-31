@@ -1,4 +1,5 @@
 <script setup>
+const emit = defineEmits(["demo"]);
 defineProps({
   title2: String,
   title3: String,
@@ -33,6 +34,7 @@ defineProps({
                 class="btn btn-danger me-3"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal06"
+
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,6 +60,7 @@ defineProps({
                 title="Editar"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
+                @click="$emit('fijarFavorito', item)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,3 +82,8 @@ defineProps({
     </div>
   </div>
 </template>
+<style>
+.table{
+  background-color: rgb(219, 236, 231);
+}
+</style>

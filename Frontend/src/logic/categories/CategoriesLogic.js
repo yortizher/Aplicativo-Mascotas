@@ -1,42 +1,14 @@
-const arrayFrutas = [
-    {
-        name: "Manzana",
-        price: "$1.00",
-        description: "Una manzana",
-    },
-    {
-        name: "Pera",
-        price: "$2.00",
-        description: "Una pera",
-    },
-    {
-        name: "Naranja",
-        price: "$3.00",
-        description: "Una naranja",
-    },
-];
-    //  const editCategory = () => {
-    //     const {name} = await fetch("localhost:5000/api/v1/species").then(r => r.json())
-    //     img=image;
-      
-    //   };
-
-//    const posts = ref([]);
-
-//     fetch("localhost:5000/api/v1/species")
-//     .then((res) => res.json())
-
-  //  const fetchingDataFromApi = () => {
-  //   try {
-  //     const URL = "https://rickandmortyapi.com/api/character";
-  //     const request =  fetch(URL);
-  //     const response =  request.json();
-
-  //   } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-    
+  const  arrayFrutas= ()=>   {
+     console.log('object');
+    // metodo para la logica pertinente
+        const urlData = "http://localhost:5000/api/v1/species"
+        const urlDataRts =  fetch(urlData)
+        .then(response => response.json())
+        .then(data => console.log(data))
+       
+      // const rta =  urlDataRts.json()
+     //return data
+   };
 
 export default arrayFrutas
 
