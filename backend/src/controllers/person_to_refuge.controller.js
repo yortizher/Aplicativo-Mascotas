@@ -34,7 +34,7 @@ export const createAdoptions = async  (req,res) => {
     const createAdoption = await PersonToRefuge.create({
         petname, date, owner_name, identity_card, phone, address, occupation
     })
-    res.json(createAdoption)
+    res.status(200).json({message: "Register was created succesfully", createAdoption})
 }
 
 export const deleteAdoptions= async (req,res) => {
@@ -45,7 +45,7 @@ export const deleteAdoptions= async (req,res) => {
                 id
             }
         })
-         res.status(204).json({message: `Register with id:${id} was succesfully removed`})
+         res.status(200).json({message: `Register with id:${id} was succesfully removed`})
        }catch(err){
             console.error(err)
        }
@@ -66,7 +66,7 @@ export const editAdoptions = async (req,res) => {
         editAdoption.occupation = occupation
         await editAdoption.save()
     
-        res.json(editAdoption)
+        res.status(200).json({message: `Register with id:${id} was succesfully edited`, editAdoption})
       } catch (err) {
         return res.status(500).json({ message: err})
       }
