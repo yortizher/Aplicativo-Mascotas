@@ -8,6 +8,9 @@ defineProps({
     required: true,
   },
 });
+const metodoEnviar=(data)=>{
+  return $emit('metodoPrueba',data);
+}
 </script>
 
 <template>
@@ -34,7 +37,7 @@ defineProps({
                 class="btn btn-danger me-3"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal06"
-
+                @click="$emit('metodoPrueba',item)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +63,7 @@ defineProps({
                 title="Editar"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                @click="$emit('fijarFavorito', item)"
+                @click="$emit('metodoPrueba',item)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
