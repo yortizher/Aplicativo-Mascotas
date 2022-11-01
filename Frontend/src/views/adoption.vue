@@ -1,12 +1,14 @@
 <script setup>
-    import { reactive, ref } from 'vue'
+    import { reactive, ref, onMounted} from 'vue'
     import { useRouter, useRoute } from 'vue-router'
     import { RouterLink, RouterView } from 'vue-router'
     import AdoptionModal from '../components/modal/AdoptionModal.vue'
+    // import { , ref, computed } from "vue";
   
      const route = useRouter();
      const petSelected = ref({});
-    
+    // let pets = reactive([])
+    // let pets = []
     let pets = [
          {
             id: crypto.randomUUID(),
@@ -59,7 +61,23 @@
             profession: ''
         }
     ])
-    
+//     const  data= async()=>   {
+//     // metodo para la logica pertinente
+//         const urlData = "http://localhost:5000/api/v1/toperson"
+//         // const resp = await fetch(urlData)
+//         // console.log(resp)
+//         // const db = await resp.json()
+//         fetch(urlData)
+//         .then(response => response.json())
+//         .then(data => pets.value=data)
+//         console.log(pets)
+//    };
+
+
+
+// onMounted(() => {
+//   data(); 
+// })
     
     const adoption = name => route.push(`/Adoption/${name}`)
     const setPetSelected = (pet) => petSelected.value = {...pet}

@@ -1,12 +1,14 @@
 <script setup>
 import { reactive, ref } from "vue";
 
-
+// const petsAdoption = reactive([]);
+let petsAdoption = [];
+let errorPet = ref(false);
 const race = reactive(["schnauzer","Doderman", "West Highland"]);
 const category = reactive(["Categoria1","Categoria2", "Categoria3"]);
 const gender = reactive(["Hembra", "Macho"]);
-
-const formPet = reactive({
+const select = ref('')
+let formPet = reactive({
     namePet : '', 
     description : '',
     age : 0,
@@ -39,8 +41,7 @@ const formErrorPet = reactive({
     profession: false,
     })
 
-const petsAdoption = reactive([]);
-let errorPet = ref(false);
+
 
 function fieldValidationsPet() {
     errorPet = false;
@@ -125,14 +126,34 @@ function fieldValidationsPet() {
 }
 
 const addPet = (e) => {
-    petsAdoption.push(formPet)
+    let obj = JSON.parse(JSON.stringify(formPet))
+     //  petsAdoption.push(formPet)
+    petsAdoption = [...petsAdoption, obj]
     message(
       "center",
       "Registro exitoso",
       "Se ha guardado correctamente",
       1500,
     )
+    console.log(petsAdoption)
     e.target.reset();
+    console.log(petsAdoption)
+    // clear();
+}
+const clear=() =>{
+    formPet.namePet = ''
+    formPet.description = ''
+    formPet.age = 0
+    formPet.vaccines = ''
+    formPet.optionRace = ''
+    formPet.optionGender = ''
+    formPet.optionCategory =''
+    formPet.name = ''
+    formPet.identification= ''
+    formPet.direction = ''
+    formPet.phone = ''
+    formPet.email = ''
+    formPet.profession = ''
 }
 
 const handleSubmitPet = (e) => fieldValidationsPet()? errorPet : addPet(e);
@@ -172,7 +193,7 @@ const message = (position,title,text,time) => {
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                     <label for="seleccionGender" class="form-label">Género</label>
-                    <select  v-model="formPet.optionGender" name="seleccionGender" id="seleccionGender" class="form-select  text-center">
+                    <select  v-model="formPet.optionGender" :ref="select" name="seleccionGender" id="seleccionGender" class="form-select  text-center">
                         <option v-for="(item,index) in gender" v-text="item"></option>
                     </select>
                     <span class="error" style="color: red" v-if="formErrorPet.seleccionGender">El campo género debe ser un dato valido</span>
@@ -181,14 +202,14 @@ const message = (position,title,text,time) => {
             <div class="row mt-3 mb-2 mx-2">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                     <label for="race" class="form-label">Raza</label>
-                    <select v-model="formPet.optionRace"  name="seleccionRace" id="seleccionRace" class="form-select text-center">
+                    <select v-model="formPet.optionRace"  :ref="select" name="seleccionRace" id="seleccionRace" class="form-select text-center">
                         <option v-for="(item,index) in race" v-text="item"></option>
                     </select>
                     <span class="error" style="color: red" v-if="formErrorPet.seleccionRace">El campo raza debe ser un dato valido</span>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                     <label for="seleccionCategory" class="form-label">Categoría</label>
-                    <select  v-model="formPet.optionCategory" name="seleccionCategory" id="seleccionCategory" class="form-select  text-center">
+                    <select  v-model="formPet.optionCategory"  :ref="select" name="seleccionCategory" id="seleccionCategory" class="form-select  text-center">
                         <option v-for="(item,index) in category" v-text="item"></option>
                     </select>
                     <span class="error" style="color: red" v-if="formErrorPet.seleccionCategory">El campo categoría debe ser un dato valido</span>
