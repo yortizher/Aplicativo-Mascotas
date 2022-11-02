@@ -4,7 +4,7 @@
 </script>
 <template>
    <div class="container contents my-5">
-    <h2 class="title">Dar en adopción</h2>
+    <h1 class="title">Dar en adopción</h1>
     <RegisterPet/>
    </div>
 </template>
