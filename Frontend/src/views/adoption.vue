@@ -10,7 +10,7 @@
     const route = useRoute();
    
      const petSelected = ref({});
-     let pets = reactive([])
+    let pets = reactive([])
    
     // let pets = [
     //      {
@@ -74,7 +74,7 @@ onMounted(() => {
 <template>
     <h1 class="title">Adoptar</h1>
     <div class="d-flex container cards">
-        <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets" :key="pet.id">
+        <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets.value" :key="pet.id">
             <div class="col w-75 mb-3">
                 <div class="card h-100">
                     <img :src="pet.photo" class="card-img-top img" alt="foto de la mascota">
