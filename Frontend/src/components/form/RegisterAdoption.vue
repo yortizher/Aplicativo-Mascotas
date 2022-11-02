@@ -1,78 +1,73 @@
 <script setup>
 import { reactive, ref } from "vue";
-import { RouterLink } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 
 
-const form = reactive({
-        name: '',
-        identification: '',
-        direction: '',
-        phone: '',
-        email: '',
-        profession: '',
-    })
+
+const route = useRoute();
+console.log(route.params.nombre)
+
+let owner_name = ref('')
+let identity_card = ref('')
+let address = ref('')
+let phone = ref('')
+let email = ref('')
+let occupation = ref('')
+
 
 const formError = reactive({
-        name: false,
-        identification: false,
-        direction: false,
+        owner_name: false,
+        identity_card: false,
+        address: false,
         phone: false,
         email: false,
-        profession: false,
+        occupation: false
     })
 const persons = reactive([]);
 let error = ref(false)
 
 function fieldValidations() {
     error = false;
-    if (form.name === "") {
-        formError.name = true;
+    if (owner_name.value === "") {
+        formError.owner_name = true;
             error = true;
     } else {
-        formError.name = false;
+        formError.owner_name = false;
     }
-    if (form.identification === "") {
-        formError.identification = true;
+    if (identity_card.value === "") {
+        formError.identity_card = true;
         error = true;
     } else {
-        formError.identification = false;
+        formError.identity_card = false;
     }
-    if (form.direction === "") {
-        formError.direction = true;
+    if (address.value === "") {
+        formError.address = true;
         error = true;
     } else {
-        formError.direction = false;
+        formError.address = false;
     }
-     if (form.phone === "") {
+     if (phone.value === "") {
         formError.phone = true;
         error = true;
     } else {
         formError.phone = false;
     } 
-    if(form.email === "") {
+    if(email.value === "") {
         formError.email = true;
         error = true;
     } else {
        formError.email = false;
     }
-    if(form.profession === "") {
-        formError.profession = true;
+    if(occupation.value === "") {
+        formError.occupation = true;
         error = true;
     } else {
-       formError.profession = false;
+       formError.occupation = false;
     }
     return error;
 }
-const addPerson = (e) => {
-    persons.push(form)
-    message(
-      "center",
-      "Registro exitoso",
-      "Se ha guardado correctamente",
-      1500,
-    )
-    e.target.reset();
-}
+
 const message = (position,title,text,time) => {
     Swal.fire({
     position: position,
@@ -83,46 +78,77 @@ const message = (position,title,text,time) => {
     timer: time,
   })
   };
-const  handleSubmit = (e) => fieldValidations()? error : addPerson(e);
+
+
+const createPerson = () => {
+  const formData = new FormData()
+  formData.append("owner_name", owner_name.value);
+  formData.append("identity_card", identity_card.value);
+  formData.append("address", address.value);
+  formData.append("phone", phone.value);
+  formData.append("email", email.value);
+  formData.append("occupation", occupation.value);
+
+  const urlDB = `http://localhost:5000/api/v1/torefuge`;
+  fetch(urlDB, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response)
+    .then((response) => { 
+        alert(
+            "center",
+            "Creación completada",
+            "Se ha creado correctamente el registro",
+            1500
+        );
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+const  handleSubmit = () => fieldValidations()? error : createPerson();
 
 
 </script>
 <template>
      <form class="container contents w-100" @submit.prevent="handleSubmit">
+      
         <div class="row mt-3 mb-2 mx-2">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="form.name">
-            <span class="error" style="color: red" v-if="formError.name">El campo nombre debe ser un dato valido</span>
+            <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="owner_name">
+            <span class="error" style="color: red" v-if="formError.owner_name">El campo nombre debe ser un dato valido</span>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="identification" class="form-label">Cédula</label>
-            <input type="text" class="form-control" id="identification" v-model="form.identification">
-            <span class="error" style="color: red" v-if="formError.identification">El campo cédula de la mascota debe ser un dato valido</span>
+            <input type="text" class="form-control" id="identification" v-model="identity_card">
+            <span class="error" style="color: red" v-if="formError.identity_card">El campo cédula de la mascota debe ser un dato valido</span>
         </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
          <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="direction" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="direction" v-model="form.direction">
-            <span class="error" style="color: red" v-if="formError.direction">El campo dirección de la mascota debe ser un dato valido</span>
+            <input type="text" class="form-control" id="direction" v-model="address">
+            <span class="error" style="color: red" v-if="formError.address">El campo dirección de la mascota debe ser un dato valido</span>
         </div>
          <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="phone" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="phone" v-model="form.phone">
+            <input type="text" class="form-control" id="phone" v-model="phone">
             <span class="error" style="color: red" v-if="formError.phone">El campo teléfono de la mascota debe ser un dato valido</span>
         </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" v-model="form.email">
+            <input type="email" class="form-control" id="email" v-model="email">
             <span class="error" style="color: red" v-if="formError.email">El campo email de la mascota debe ser un dato valido</span>
         </div>
          <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
             <label for="profession" class="form-label">Profesión</label>
-            <input type="text" class="form-control" id="profession" v-model="form.profession">
-            <span class="error" style="color: red" v-if="formError.profession">El campo profesión de la mascota debe ser un dato valido</span>
+            <input type="text" class="form-control" id="profession" v-model="occupation">
+            <span class="error" style="color: red" v-if="formError.occupation">El campo profesión de la mascota debe ser un dato valido</span>
         </div>
         </div>
         <div class="container-btn">
