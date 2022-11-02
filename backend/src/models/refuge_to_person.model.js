@@ -44,7 +44,7 @@ export const RefugeToPerson = db.define('person_refuge',{
             allowNull: false
         },
         cc:{ 
-            type: INTEGER,
+            type: STRING,
             allowNull: false,
         },
         phone:{ 
