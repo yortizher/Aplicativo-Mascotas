@@ -7,6 +7,7 @@ import { personRefugeRouter } from './routes/person_to_refuge.route.js'
 import { refugePersonRouter } from './routes/refuge_to_person.route.js'
 import { imageRouter } from "./routes/image.route.js"
 import { uploadRouter } from "./routes/upload.route.js"
+import { editStateRouter } from './routes/edit_state.route.js'
 import fileupload from 'express-fileupload'
  
 const app = express()
@@ -22,5 +23,6 @@ app.use(personRefugeRouter)
 app.use(refugePersonRouter)
 app.use(imageRouter)
 app.use(uploadRouter)
+app.use('/api/v1/edit-state', editStateRouter)
 
 export default app

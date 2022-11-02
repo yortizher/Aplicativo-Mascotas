@@ -10,63 +10,48 @@ export const RefugeToPerson = db.define('person_refuge',{
             autoIncrement: true,    
         },
         owner_name:{
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         pet_name:{
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         pet_age:{
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         pet_url:{
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         description: {
-            type: STRING,
-            allowNull: false
+            type: STRING
         }, gender: {
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         breed: {
-            type: STRING,
-            allowNull: false
+            type: STRING
         },specie: {
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         vaccine: {
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         cc:{ 
             type: STRING,
-            allowNull: false,
         },
         phone:{ 
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         email:{ 
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         address:{ 
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         occupation:{ 
-            type: STRING,
-            allowNull: false
+            type: STRING
         },
         status: {
             type:STRING,
-            defaultValue: 'disponible',
-            allowNull: false
+            defaultValue: 'disponible'
         }
         })
 
