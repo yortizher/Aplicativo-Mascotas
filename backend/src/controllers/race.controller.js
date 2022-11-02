@@ -36,7 +36,7 @@ export const createRaces = async  (req,res) => {
     const createRace = await Race.create({
         name
     })
-    res.json(createRace)
+    res.status(200).json({message: "Register was created succesfully", createRace})
 }
 
 export const deleteRaces = async (req,res) => {
@@ -47,7 +47,7 @@ export const deleteRaces = async (req,res) => {
                 id
             }
         })
-         res.status(204).json({message: `Race with id:${id} was succesfully removed`})
+         res.status(200).json({message: `Race with id:${id} was succesfully removed`})
        }catch(err){
             console.error(err)
        }
@@ -62,7 +62,7 @@ export const editRaces = async (req,res) => {
         editRace.name = name
         await editRace.save()
     
-        res.json(editRace)
+        res.status(200).json({message: `Register with id:${id} was succesfully edited`, editRace})
       } catch (err) {
         return res.status(500).json({ message: err})
       }

@@ -37,7 +37,7 @@ export const createSpecies = async  (req,res) => {
     const createSpecies = await Species.create({
         name
     })
-    res.json(createSpecies)
+    res.status(200).json({message: 'Specie was created succesfully', createSpecies})
     }catch(error){
         console.log(error)
     }
@@ -52,7 +52,7 @@ export const deleteSpecies = async (req,res) => {
                 id
             }
         })
-         res.status(204).json({message: `Species with id:${id} was succesfully removed`})
+         res.status(200).json({message: `Species with id:${id} was succesfully removed`})
        }catch(err){
             console.error(err)
        }
@@ -67,7 +67,7 @@ export const editSpecies = async (req,res) => {
         editSpecies.name = name
         await editSpecies.save()
     
-        res.json(editSpecies)
+        res.status(200).json({message: `Register with id:${id} was succesfully edited`, editSpecies})
       } catch (err) {
         return res.status(500).json({ message: err})
       }
