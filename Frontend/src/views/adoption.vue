@@ -10,49 +10,49 @@
     const route = useRoute();
    
      const petSelected = ref({});
-    // let pets = reactive([])
+    let pets = reactive([])
    
-    let pets = [
-         {
-            id: crypto.randomUUID(),
-            petname: "Thor",
-            age: 1,
-            breed: "schnauzer",
-            photo: "https://breed-assets.wisdompanel.com/dog/schnauzer-miniature/Miniature_Schnauzer__Color_Small_File.png",
-            description: "Thor le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
-            gender: "macho",
-            vaccine: ["vacuna pentavalente", "coronavirus canino"],
-            owner_name: "Caro Lopez",
-            specie: "Categoria"
+    // let pets = [
+    //      {
+    //         id: crypto.randomUUID(),
+    //         petname: "Thor",
+    //         age: 1,
+    //         breed: "schnauzer",
+    //         photo: "https://breed-assets.wisdompanel.com/dog/schnauzer-miniature/Miniature_Schnauzer__Color_Small_File.png",
+    //         description: "Thor le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
+    //         gender: "macho",
+    //         vaccine: ["vacuna pentavalente", "coronavirus canino"],
+    //         owner_name: "Caro Lopez",
+    //         specie: "Categoria"
                         
-        },
-              {
-            id: crypto.randomUUID(),
-            petname: "Rocky",
-            age: 3,
-            breed: "Doderman",
-            photo: "https://filosofiaanimal.com/wp-content/uploads/2021/07/nombre-perros-cachorro.png",
-            description: "Rocky le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
-            gender: "macho",
-            vaccine: ["moquillo","parvovirosis", "rabia"],
-            owner_name: "Juan Castro",
-            specie: "Categoria"
+    //     },
+    //           {
+    //         id: crypto.randomUUID(),
+    //         petname: "Rocky",
+    //         age: 3,
+    //         breed: "Doderman",
+    //         photo: "https://filosofiaanimal.com/wp-content/uploads/2021/07/nombre-perros-cachorro.png",
+    //         description: "Rocky le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
+    //         gender: "macho",
+    //         vaccine: ["moquillo","parvovirosis", "rabia"],
+    //         owner_name: "Juan Castro",
+    //         specie: "Categoria"
                         
-        },
-              {
-            id: crypto.randomUUID(),
-            petname: "Nala",
-            age: 2,
-            breed: "West Highland",
-            photo: "https://breed-assets.wisdompanel.com/dog/west-highland-white-terrier/West_Highland_Terrier_Color_Small_File_copy.png",
-            description: "Nala le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
-            gender: "hembra",
-            vaccine: ["parvovirosis", "rabia"],
-            owner_name: "Ana Castillo",
-            specie: "Categoria"
+    //     },
+    //           {
+    //         id: crypto.randomUUID(),
+    //         petname: "Nala",
+    //         age: 2,
+    //         breed: "West Highland",
+    //         photo: "https://breed-assets.wisdompanel.com/dog/west-highland-white-terrier/West_Highland_Terrier_Color_Small_File_copy.png",
+    //         description: "Nala le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
+    //         gender: "hembra",
+    //         vaccine: ["parvovirosis", "rabia"],
+    //         owner_name: "Ana Castillo",
+    //         specie: "Categoria"
                         
-        },
-    ]
+    //     },
+    // ]
    
     const  data= async()=> {
         const urlData = "http://localhost:5000/api/v1/toperson"
@@ -74,7 +74,7 @@ onMounted(() => {
 <template>
     <h1 class="title">Adoptar</h1>
     <div class="d-flex container cards">
-        <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets" :key="pet.id">
+        <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets.value" :key="pet.id">
             <div class="col w-75 mb-3">
                 <div class="card h-100">
                     <img :src="pet.photo" class="card-img-top img" alt="foto de la mascota">

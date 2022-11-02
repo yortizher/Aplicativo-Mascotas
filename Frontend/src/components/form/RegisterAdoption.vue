@@ -122,8 +122,16 @@ const createPerson = () => {
     .catch((error) => {
       console.error("Error:", error);
     });
-
+    clear();
 };
+const clear=() =>{
+   owner_name.value = '';
+   identity_card.value = '';
+   address.value= '';
+   phone.value= '';
+   email.value = '';
+   occupation.value = '';
+}
 
 const  handleSubmit = () => fieldValidations()? error : createPerson();
 
