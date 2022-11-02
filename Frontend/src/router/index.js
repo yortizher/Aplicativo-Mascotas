@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../views/Adoption.vue'),
     },
     {
-      path:'/Adoption/:id',
+      path:'/Adoption/:id/:namePet',
       name: 'AdoptionForm',
       component: () => import('../views/AdoptionForm.vue')
     },

@@ -174,11 +174,14 @@ const createPetsAdoption = () => {
   const urlDB = `http://localhost:5000/api/v1/toperson`;
   fetch(urlDB, {
     method: "POST",
-    body: formData,
+    body: JSON.stringify(formData),
+    headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+    }
   })
     .then((response) => response)
     .then((response) => { 
-        alert(
+        message(
             "center",
             "Creación completada",
             "Se ha creado correctamente el registro",
@@ -188,6 +191,7 @@ const createPetsAdoption = () => {
     .catch((error) => {
       console.error("Error:", error);
     });
+    clear();
 };
 
 const addPet = () => {
@@ -201,21 +205,20 @@ const addPet = () => {
     clear();
 }
 const clear=() =>{
-   petname = '';
-   description = '';
-   age= '';
-   gender = '';
-   vaccine = '';
-   breed = '';
-   specie = '';
-   name = ''; 
-   identity_card= '';
-   phone= '';
-   address= '';
-   occupation= '';
-   email= '';
+   petname.value = '';
+   description.value = '';
+   age.value= '';
+   gender.value = '';
+   vaccine.value = '';
+   breed.value = '';
+   specie.value = '';
+   name.value = ''; 
+   identity_card.value= '';
+   phone.value= '';
+   address.value= '';
+   occupation.value= '';
+   email.value= '';
 }
-
 // const handleSubmitPet = (e) => fieldValidationsPet()? errorPet : addPet(e);
 const handleSubmitPet = () => fieldValidationsPet()? errorPet : createPetsAdoption();
 
