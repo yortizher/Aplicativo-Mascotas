@@ -30,7 +30,7 @@ export const PersonToRefuge = db.define('refuge_person',{
             allowNull: false
         },
         cc:{ 
-            type: STRING,
+            type: INTEGER,
             allowNull: false
         },
         email:{
