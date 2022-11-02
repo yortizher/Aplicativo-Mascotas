@@ -14,7 +14,7 @@ export const PersonToRefuge = db.define('refuge_person',{
             allowNull: false
         },
         pet_age:{
-            type: INTEGER,
+            type: STRING,
             allowNull: false
         },
         pet_url:{
@@ -30,7 +30,7 @@ export const PersonToRefuge = db.define('refuge_person',{
             allowNull: false
         },
         cc:{ 
-            type: INTEGER,
+            type: STRING,
             allowNull: false
         },
         email:{
@@ -38,7 +38,7 @@ export const PersonToRefuge = db.define('refuge_person',{
             allowNull: false
         },
         phone:{ 
-            type: INTEGER,
+            type: STRING,
             allowNull: false
         },
         address:{ 
