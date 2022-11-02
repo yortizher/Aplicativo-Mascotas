@@ -37,8 +37,7 @@ const dataRace= async()=> {
         const urlData = "http://localhost:5000/api/v1/race"
         await fetch(urlData)
         .then(resp => resp.json())
-        .then(data => race.value= data)
-        // console.log(race)
+        .then(data => race.value= data)   
    };
 
   
@@ -47,7 +46,6 @@ const dataCategory= async()=> {
         await fetch(urlData)
         .then(resp => resp.json())
         .then(data => category.value= data)
-        // console.log(category)
    };
 
 onMounted(() => {
