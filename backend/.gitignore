@@ -2,3 +2,4 @@ sql.sql
 node_modules/
 .env
 tmp/
+example.js

@@ -9,7 +9,15 @@ export const PersonToRefuge = db.define('refuge_person',{
             primaryKey: true,
             autoIncrement: true,
         },
-        petname:{
+        pet_name:{
+            type: STRING,
+            allowNull: false
+        },
+        pet_age:{
+            type: INTEGER,
+            allowNull: false
+        },
+        pet_url:{
             type: STRING,
             allowNull: false
         },
@@ -21,7 +29,11 @@ export const PersonToRefuge = db.define('refuge_person',{
             type: STRING,
             allowNull: false
         },
-        identity_card:{ 
+        cc:{ 
+            type: INTEGER,
+            allowNull: false
+        },
+        email:{
             type: STRING,
             allowNull: false
         },
