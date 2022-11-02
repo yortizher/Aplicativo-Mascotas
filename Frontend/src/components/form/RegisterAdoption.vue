@@ -5,9 +5,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 
-const route = useRoute();
-console.log(route.params.nombre)
+const {params } = useRoute();
+console.log(params)
 
+	
+let petname = ref(params.namePet)
 let owner_name = ref('')
 let identity_card = ref('')
 let address = ref('')
@@ -78,10 +80,24 @@ const message = (position,title,text,time) => {
     timer: time,
   })
   };
-
+const addPerson = (e) => {
+    let form = {
+        petname: petname.value,
+        owner_name: owner_name.value,
+        identity_card: identity_card.value,
+        address: address.value,
+        phone: phone.value,
+        email: email.value,
+        occupation: occupation.value
+    }
+    // persons.push(form)
+    e.target.reset();
+    console.log(persons)
+}
 
 const createPerson = () => {
   const formData = new FormData()
+  formData.append("petname", petname.value);
   formData.append("owner_name", owner_name.value);
   formData.append("identity_card", identity_card.value);
   formData.append("address", address.value);
@@ -96,7 +112,7 @@ const createPerson = () => {
   })
     .then((response) => response)
     .then((response) => { 
-        alert(
+        message(
             "center",
             "Creación completada",
             "Se ha creado correctamente el registro",
@@ -106,6 +122,7 @@ const createPerson = () => {
     .catch((error) => {
       console.error("Error:", error);
     });
+
 };
 
 const  handleSubmit = () => fieldValidations()? error : createPerson();
@@ -114,18 +131,23 @@ const  handleSubmit = () => fieldValidations()? error : createPerson();
 </script>
 <template>
      <form class="container contents w-100" @submit.prevent="handleSubmit">
-      
         <div class="row mt-3 mb-2 mx-2">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="owner_name">
-            <span class="error" style="color: red" v-if="formError.owner_name">El campo nombre debe ser un dato valido</span>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+                <label for="name" class="form-label">Nombre Mascota</label>
+                <input type="text"  readonly class="form-control" id="name" aria-describedby="exampleHelp"  v-model="petname">
+            </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
-            <label for="identification" class="form-label">Cédula</label>
-            <input type="text" class="form-control" id="identification" v-model="identity_card">
-            <span class="error" style="color: red" v-if="formError.identity_card">El campo cédula de la mascota debe ser un dato valido</span>
-        </div>
+        <div class="row mt-3 mb-2 mx-2">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="owner_name">
+                <span class="error" style="color: red" v-if="formError.owner_name">El campo nombre debe ser un dato valido</span>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+                <label for="identification" class="form-label">Cédula</label>
+                <input type="text" class="form-control" id="identification" v-model="identity_card">
+                <span class="error" style="color: red" v-if="formError.identity_card">El campo cédula de la mascota debe ser un dato valido</span>
+            </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
          <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">

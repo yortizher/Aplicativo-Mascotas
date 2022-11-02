@@ -174,7 +174,10 @@ const createPetsAdoption = () => {
   const urlDB = `http://localhost:5000/api/v1/toperson`;
   fetch(urlDB, {
     method: "POST",
-    body: formData,
+    body: JSON.stringify(formData),
+    headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+    }
   })
     .then((response) => response)
     .then((response) => { 
@@ -216,7 +219,6 @@ const clear=() =>{
    occupation.value= '';
    email.value= '';
 }
-
 // const handleSubmitPet = (e) => fieldValidationsPet()? errorPet : addPet(e);
 const handleSubmitPet = () => fieldValidationsPet()? errorPet : createPetsAdoption();
 
