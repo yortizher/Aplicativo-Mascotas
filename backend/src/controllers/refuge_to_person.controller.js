@@ -33,8 +33,6 @@ export const createAdoptions = async  (req,res) => {
         const { owner_name, pet_name, pet_age,description,gender,breed, specie, vaccine, cc, phone, address, occupation, email, status } = req.body
        
         const uploadResponse = await cloudinary.uploader.upload( fileStr, { upload_preset: "pets_folder" })
-       
-      
 
         const createAdoption = await RefugeToPerson.create({
             owner_name, pet_name, pet_age, pet_url: uploadResponse.secure_url,description,gender,breed, specie, vaccine, cc, phone, address, occupation, email, status})
