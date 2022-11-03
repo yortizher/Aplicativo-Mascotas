@@ -1,5 +1,6 @@
 import { PersonToRefuge } from '../models/person_to_refuge.model.js'
 
+
 export const adopting = async (req,res) => {
     try{
         const adoptingList = await PersonToRefuge.findAll()
@@ -26,14 +27,19 @@ export const adoptingById = async (req,res) => {
 }
 
 export const createAdoptions = async  (req,res) => {
-    const { pet_name, pet_age, pet_url, email, date, owner_name, cc, phone, address, occupation } = req.body
-    if( !pet_name || !pet_age || !pet_url || !email || !date || !owner_name || !cc || !phone || !address || !occupation ){
-        return res.status(400).json({error: "Uno o más campos vacios"})
-    }
+
+    try {
+        
+    const { pet_name, email, date, owner_name, cc, phone, address, occupation } = req.body
+
     const createAdoption = await PersonToRefuge.create({
-        pet_name, pet_age, pet_url, email, date, owner_name, cc, phone, address, occupation
+        pet_name, email, date, owner_name, cc, phone, address, occupation
     })
     res.status(200).json({message: "Register was created succesfully", createAdoption})
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const deleteAdoptions= async (req,res) => {
@@ -53,12 +59,11 @@ export const deleteAdoptions= async (req,res) => {
 export const editAdoptions = async (req,res) => {
     const { id } = req.params
     try {
-        const { pet_name, pet_age, pet_url, email, date, owner_name, cc, phone, address, occupation } = req.body
+        
+        const { pet_name,email, date, owner_name, cc, phone, address, occupation } = req.body
     
         const editAdoption= await PersonToRefuge.findByPk(id)
         editAdoption.pet_name = pet_name
-        editAdoption.pet_age = pet_age
-        editAdoption.pet_url = pet_url
         editAdoption.date = date
         editAdoption.owner_name = owner_name
         editAdoption.cc = cc
