@@ -9,7 +9,7 @@ const {params } = useRoute();
 console.log(params)
 
 	
-let petname = ref(params.namePet)
+let pet_name = ref(params.namePet)
 let owner_name = ref('')
 let cc = ref('')
 let address = ref('')
@@ -97,7 +97,7 @@ const addPerson = (e) => {
 
 const createPerson = () => {
   const formData = new FormData()
-  formData.append("petname", petname.value);
+  formData.append("pet_name", pet_name.value);
   formData.append("owner_name", owner_name.value);
   formData.append("cc", cc.value);
   formData.append("address", address.value);
@@ -140,9 +140,9 @@ const  handleSubmit = () => fieldValidations()? error : createPerson();
 <template>
      <form class="container contents w-100" @submit.prevent="handleSubmit">
         <div class="row mt-3 mb-2 mx-2">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-3">
                 <label for="name" class="form-label">Nombre Mascota</label>
-                <input type="text"  readonly class="form-control" id="name" aria-describedby="exampleHelp"  v-model="petname">
+                <input type="text"  readonly class="form-control" id="name" aria-describedby="exampleHelp"  v-model="pet_name">
             </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">

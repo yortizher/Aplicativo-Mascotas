@@ -3,8 +3,7 @@
     import { useRouter, useRoute } from 'vue-router'
     import { RouterLink, RouterView } from 'vue-router'
     import AdoptionModal from '../components/modal/AdoptionModal.vue'
-    // import { , ref, computed } from "vue";
-
+  
 
     const router = useRouter();
     const route = useRoute();
@@ -66,29 +65,30 @@ onMounted(() => {
   data(); 
 })
 // console.log(pets)
-    const adoption = (id,petname) => router.push(`/Adoption/${id}/${petname}`)
+    const adoption = (id,pet_name) => router.push(`/Adoption/${id}/${pet_name}`)
     const setPetSelected = (pet) => petSelected.value = {...pet}
-     console.log(route.params.nombre)
-    console.log(router)
+
 </script>
 <template>
     <h1 class="title">Adoptar</h1>
     <div class="d-flex container cards">
         <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets.value" :key="pet.id">
-            <div class="col w-75 mb-3">
-                <div class="card h-100">
-                    <img :src="pet.photo" class="card-img-top img" alt="foto de la mascota">
-                    <div class="card-body">
-                        <h5 class="card-title text-info">{{pet.petname}}</h5>
-                        <p class="card-text">{{pet.description}}</p>
-                        <a href="#"  class="d-flex justify-content-end ancla" @click="setPetSelected(pet)" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col w-75 mb-3">
+                    <div class="card h-100">
+                        <img :src="pet.pet_url" class="card-img-top img" alt="foto de la mascota">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">{{pet.pet_name}}</h5>
+                            <p class="card-text">{{pet.description}}</p>
+                            <a href="#"  class="d-flex justify-content-end ancla" @click="setPetSelected(pet)" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                <button @click="adoption(pet.id,pet.pet_name)" class="btn btn-info display-6 d-grid">Adoptar</button>
+                            </small>
+                        </div>
+                    <AdoptionModal :pet="petSelected"/>   
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">
-                            <button @click="adoption(pet.id,pet.petname)" class="btn btn-info display-6 d-grid">Adoptar</button>
-                        </small>
-                    </div>
-                 <AdoptionModal :pet="petSelected"/>   
                 </div>
             </div>
         </div>

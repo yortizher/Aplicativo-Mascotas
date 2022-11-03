@@ -75,7 +75,7 @@ const formErrorPet = reactive({
 
 function fieldValidationsPet() {
     errorPet = false;
-    if (pet_age.value === "" || pet_age.value <= 1) {
+    if (pet_age.value === "" || pet_age.value < 1) {
         formErrorPet.pet_age = true;
         errorPet = true;
     } else {
@@ -155,7 +155,8 @@ function fieldValidationsPet() {
     return errorPet;
 }
 const createPetsAdoption = () => {
-  const formData = new FormData()
+    const urlDB = `http://localhost:5000/api/v1/toperson`;
+    const formData = new FormData()
     formData.append("pet_name", pet_name.value);
     formData.append("description",description.value);
     formData.append(" pet_age",  pet_age.value);
@@ -169,26 +170,20 @@ const createPetsAdoption = () => {
     formData.append("address", address.value);
     formData.append("occupation", occupation.value);
     formData.append("email", email.value);
-  const urlDB = `http://localhost:5000/api/v1/toperson`;
-  fetch(urlDB, {
+   let post = {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-    }
-  })
-    .then((response) => response)
-    .then((response) => { 
-        message(
-            "center",
-            "Creación completada",
-            "Se ha creado correctamente el registro",
-            1500
-        );
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+          'Content-Type': 'application/json; charset=utf-8',
+    },
+  };
+   fetch(urlDB, post ).then((response)=> response.json());
+    message(
+        "center",
+        "Creación completada",
+        "Se ha creado correctamente el registro",
+        1500
+    );
     clear();
 };
 
