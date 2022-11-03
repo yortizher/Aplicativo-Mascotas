@@ -11,7 +11,7 @@ console.log(params)
 	
 let petname = ref(params.namePet)
 let owner_name = ref('')
-let identity_card = ref('')
+let cc = ref('')
 let address = ref('')
 let phone = ref('')
 let email = ref('')
@@ -20,7 +20,7 @@ let occupation = ref('')
 
 const formError = reactive({
         owner_name: false,
-        identity_card: false,
+        cc: false,
         address: false,
         phone: false,
         email: false,
@@ -37,11 +37,11 @@ function fieldValidations() {
     } else {
         formError.owner_name = false;
     }
-    if (identity_card.value === "") {
-        formError.identity_card = true;
+    if (cc.value === "") {
+        formError.cc = true;
         error = true;
     } else {
-        formError.identity_card = false;
+        formError.cc = false;
     }
     if (address.value === "") {
         formError.address = true;
@@ -99,7 +99,7 @@ const createPerson = () => {
   const formData = new FormData()
   formData.append("petname", petname.value);
   formData.append("owner_name", owner_name.value);
-  formData.append("identity_card", identity_card.value);
+  formData.append("cc", cc.value);
   formData.append("address", address.value);
   formData.append("phone", phone.value);
   formData.append("email", email.value);
@@ -126,10 +126,10 @@ const createPerson = () => {
 };
 const clear=() =>{
    owner_name.value = '';
-   identity_card.value = '';
-   address.value= '';
-   phone.value= '';
+   cc.value = '';
    email.value = '';
+   phone.value= '';
+   address.value= '';
    occupation.value = '';
 }
 
@@ -153,8 +153,8 @@ const  handleSubmit = () => fieldValidations()? error : createPerson();
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                 <label for="identification" class="form-label">Cédula</label>
-                <input type="text" class="form-control" id="identification" v-model="identity_card">
-                <span class="error" style="color: red" v-if="formError.identity_card">El campo cédula de la mascota debe ser un dato valido</span>
+                <input type="text" class="form-control" id="identification" v-model="cc">
+                <span class="error" style="color: red" v-if="formError.cc">El campo cédula de la mascota debe ser un dato valido</span>
             </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
