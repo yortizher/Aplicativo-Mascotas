@@ -17,15 +17,15 @@ const category = reactive([]);
 const race = reactive([]);
 
 
-let petname = ref('') 
+let pet_name = ref('') 
 let description = ref('')
-let age= ref('')
+let pet_age= ref('')
 let gender = ref('')
 let vaccine = ref('')
 let breed = ref('')
 let specie = ref('')
-let name = ref('') 
-let identity_card= ref('')
+let owner_name = ref('') 
+let cc = ref('')
 let phone= ref('')
 let address= ref('')
 let occupation= ref('')
@@ -54,15 +54,15 @@ onMounted(() => {
 })
 
 const formErrorPet = reactive({
-        petname:  false,
+        pet_name:  false,
         description:false,
-        age: false,
+        pet_age: false,
         seleccionGender: false,
         breed: false,
         specie: false,
         vaccine: false,
-        name: false,
-        identity_card: false,
+        owner_name: false,
+        cc: false,
         phone: false,
         address: false,
         occupation: false,
@@ -75,17 +75,17 @@ const formErrorPet = reactive({
 
 function fieldValidationsPet() {
     errorPet = false;
-    if (age.value === "" || age <= 1) {
-        formErrorPet.age = true;
+    if (pet_age.value === "" || pet_age.value <= 1) {
+        formErrorPet.pet_age = true;
         errorPet = true;
     } else {
-       formErrorPet.age = false;
+       formErrorPet.pet_age = false;
     }
-    if (petname.value === "") {
-       formErrorPet.petname = true;
+    if (pet_name.value === "") {
+       formErrorPet.pet_name = true;
         errorPet = true;
     } else {
-       formErrorPet.petname = false;
+       formErrorPet.pet_name = false;
     }
     if (description.value === "") {
        formErrorPet.description = true;
@@ -116,17 +116,17 @@ function fieldValidationsPet() {
     } else {
        formErrorPet.seleccionCategory = false;
     }
-    if (name.value === "") {
-        formErrorPet.name = true;
+    if (owner_name.value === "") {
+        formErrorPet.owner_name = true;
         errorPet = true;
     } else {
-        formErrorPet.name = false;
+        formErrorPet.owner_name = false;
     }
-    if (identity_card.value === "") {
-        formErrorPet.identity_card = true;
+    if (cc.value === "") {
+        formErrorPet.cc = true;
         errorPet = true;
     } else {
-        formErrorPet.identity_card = false;
+        formErrorPet.cc = false;
     }
     if (address.value === "") {
         formErrorPet.address = true;
@@ -156,18 +156,18 @@ function fieldValidationsPet() {
 }
 const createPetsAdoption = () => {
   const formData = new FormData()
-    formData.append("petname", petname.value);
+    formData.append("pet_name", pet_name.value);
     formData.append("description",description.value);
-    formData.append("age", age.value);
+    formData.append(" pet_age",  pet_age.value);
     formData.append("gender", gender.value);
     formData.append("breed", breed.value);
     formData.append("specie", specie.value);
     formData.append("vaccine", vaccine.value);
-    formData.append("name",name.value);
-    formData.append("identity_card", identity_card.value);
+    formData.append("owner_name",owner_name.value);
+    formData.append("cc", cc.value);
     formData.append("phone", phone.value);
     formData.append("address", address.value);
-    formData.append("occupation",  occupation.value);
+    formData.append("occupation", occupation.value);
     formData.append("email", email.value);
   const urlDB = `http://localhost:5000/api/v1/toperson`;
   fetch(urlDB, {
@@ -203,15 +203,15 @@ const addPet = () => {
     clear();
 }
 const clear=() =>{
-   petname.value = '';
+   pet_name.value = '';
    description.value = '';
-   age.value= '';
+   pet_age.value= '';
    gender.value = '';
    vaccine.value = '';
    breed.value = '';
    specie.value = '';
-   name.value = ''; 
-   identity_card.value= '';
+   owner_name.value = ''; 
+   cc.value= '';
    phone.value= '';
    address.value= '';
    occupation.value= '';
@@ -238,13 +238,13 @@ const message = (position,title,text,time) => {
             <div class="row mt-3 mb-2 mx-2">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                     <label for="namePet" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="namePet" aria-describedby="exampleHelp" v-model="petname">
-                    <span class="error" style="color: red" v-if="formErrorPet.petname">El campo nombre de la mascota debe ser un dato valido</span>
+                    <input type="text" class="form-control" id="namePet" aria-describedby="exampleHelp" v-model="pet_name">
+                    <span class="error" style="color: red" v-if="formErrorPet.pet_name">El campo nombre de la mascota debe ser un dato valido</span>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                     <label for="age" class="form-label">Edad</label>
-                    <input type="text" class="form-control" id="age" v-model.number="age">
-                    <span class="error" style="color: red" v-if="formErrorPet.age">El campo edad debe ser un dato valido</span>
+                    <input type="text" class="form-control" id="age" v-model.number="pet_age">
+                    <span class="error" style="color: red" v-if="formErrorPet.pet_age">El campo edad debe ser un dato valido</span>
                 </div>
             </div>
             <div class="row mt-3 mb-2 mx-2">
@@ -291,13 +291,13 @@ const message = (position,title,text,time) => {
              <div class="row mt-3 mb-2 mx-2">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                 <label for="name" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="name">
-                <span class="error" style="color: red" v-if="formErrorPet.name">El campo nombre debe ser un dato valido</span>
+                <input type="text" class="form-control" id="name" aria-describedby="exampleHelp" v-model="owner_name">
+                <span class="error" style="color: red" v-if="formErrorPet.owner_name">El campo nombre debe ser un dato valido</span>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
                 <label for="identification" class="form-label">Cédula</label>
-                <input type="text" class="form-control" id="identification" v-model="identity_card">
-                <span class="error" style="color: red" v-if="formErrorPet.identity_card">El campo cédula de la mascota debe ser un dato valido</span>
+                <input type="text" class="form-control" id="identification" v-model="cc">
+                <span class="error" style="color: red" v-if="formErrorPet.cc">El campo cédula de la mascota debe ser un dato valido</span>
             </div>
             </div>
             <div class="row mt-3 mb-2 mx-2">
