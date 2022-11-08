@@ -9,14 +9,14 @@ const {params } = useRoute();
 console.log(params)
 
 	
-let petname = ref(params.namePet)
+let pet_name = ref(params.namePet)
 let owner_name = ref('')
 let cc = ref('')
 let address = ref('')
 let phone = ref('')
 let email = ref('')
 let occupation = ref('')
-
+let formData = ref({})
 
 const formError = reactive({
         owner_name: false,
@@ -80,50 +80,69 @@ const message = (position,title,text,time) => {
     timer: time,
   })
   };
-const addPerson = (e) => {
-    let form = {
-        petname: petname.value,
+const addPerson = () => {
+    formData.value = {
+        pet_name: pet_name.value,
         owner_name: owner_name.value,
-        identity_card: identity_card.value,
+        cc: cc.value,
         address: address.value,
         phone: phone.value,
         email: email.value,
         occupation: occupation.value
     }
-    // persons.push(form)
-    e.target.reset();
-    console.log(persons)
+    // e.target.reset();
+    console.log(formData)
 }
 
-const createPerson = () => {
-  const formData = new FormData()
-  formData.append("petname", petname.value);
-  formData.append("owner_name", owner_name.value);
-  formData.append("cc", cc.value);
-  formData.append("address", address.value);
-  formData.append("phone", phone.value);
-  formData.append("email", email.value);
-  formData.append("occupation", occupation.value);
 
+const createPerson = async()=> {
   const urlDB = `http://localhost:5000/api/v1/torefuge`;
-  fetch(urlDB, {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response)
-    .then((response) => { 
-        message(
-            "center",
-            "Creación completada",
-            "Se ha creado correctamente el registro",
-            1500
-        );
+  try {  
+    addPerson();
+    const response = await fetch(urlDB, {
+       method: "POST",
+       body: JSON.stringify(formData.value),
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-    clear();
+    const data = await response.json();
+    console.log(data)
+  }catch (error) {
+    console.log(error)
+  }
 };
+//   const formData = new FormData()
+//   formData.append("pet_name", pet_name.value);
+//   formData.append("owner_name", owner_name.value);
+//   formData.append("cc", cc.value);
+//   formData.append("address", address.value);
+//   formData.append("phone", phone.value);
+//   formData.append("email", email.value);
+//   formData.append("occupation", occupation.value);
+    // clear();
+//   fetch(urlDB, {
+//     method: "POST",
+//      body: JSON.stringify(formData),
+//     headers: {
+//           'Content-Type': 'application/json; charset=utf-8',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((response) => { 
+//         message(
+//             "center",
+//             "Creación completada",
+//             "Se ha creado correctamente el registro",
+//             1500
+//         );
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+//  message(
+//             "center",
+//             "Creación completada",
+//             "Se ha creado correctamente el registro",
+//             1500
+//         );
 const clear=() =>{
    owner_name.value = '';
    cc.value = '';
@@ -140,9 +159,9 @@ const  handleSubmit = () => fieldValidations()? error : createPerson();
 <template>
      <form class="container contents w-100" @submit.prevent="handleSubmit">
         <div class="row mt-3 mb-2 mx-2">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-3">
                 <label for="name" class="form-label">Nombre Mascota</label>
-                <input type="text"  readonly class="form-control" id="name" aria-describedby="exampleHelp"  v-model="petname">
+                <input type="text"  readonly class="form-control" id="name" aria-describedby="exampleHelp"  v-model="pet_name">
             </div>
         </div>
         <div class="row mt-3 mb-2 mx-2">
