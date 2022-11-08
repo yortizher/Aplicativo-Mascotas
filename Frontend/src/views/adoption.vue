@@ -11,51 +11,11 @@
      const petSelected = ref({});
     let pets = reactive([])
    
-    // let pets = [
-    //      {
-    //         id: crypto.randomUUID(),
-    //         petname: "Thor",
-    //         age: 1,
-    //         breed: "schnauzer",
-    //         photo: "https://breed-assets.wisdompanel.com/dog/schnauzer-miniature/Miniature_Schnauzer__Color_Small_File.png",
-    //         description: "Thor le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
-    //         gender: "macho",
-    //         vaccine: ["vacuna pentavalente", "coronavirus canino"],
-    //         owner_name: "Caro Lopez",
-    //         specie: "Categoria"
-                        
-    //     },
-    //           {
-    //         id: crypto.randomUUID(),
-    //         petname: "Rocky",
-    //         age: 3,
-    //         breed: "Doderman",
-    //         photo: "https://filosofiaanimal.com/wp-content/uploads/2021/07/nombre-perros-cachorro.png",
-    //         description: "Rocky le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
-    //         gender: "macho",
-    //         vaccine: ["moquillo","parvovirosis", "rabia"],
-    //         owner_name: "Juan Castro",
-    //         specie: "Categoria"
-                        
-    //     },
-    //           {
-    //         id: crypto.randomUUID(),
-    //         petname: "Nala",
-    //         age: 2,
-    //         breed: "West Highland",
-    //         photo: "https://breed-assets.wisdompanel.com/dog/west-highland-white-terrier/West_Highland_Terrier_Color_Small_File_copy.png",
-    //         description: "Nala le gusta las galletas con sabor a pollo, le gusta jugar futbol, los regalos y sobresas, ir al parque y hacer amigos",
-    //         gender: "hembra",
-    //         vaccine: ["parvovirosis", "rabia"],
-    //         owner_name: "Ana Castillo",
-    //         specie: "Categoria"
-                        
-    //     },
-    // ]
    
-    const  data= async()=> {
+   
+    const  data= ()=> {
         const urlData = "http://localhost:5000/api/v1/toperson"
-        await fetch(urlData)
+       fetch(urlData)
         .then(resp => resp.json())
         .then(data => pets.value= data)
         console.log(pets)
@@ -64,22 +24,23 @@
 onMounted(() => {
   data(); 
 })
-// console.log(pets)
+console.log(pets)
     const adoption = (id,pet_name) => router.push(`/Adoption/${id}/${pet_name}`)
     const setPetSelected = (pet) => petSelected.value = {...pet}
 
 </script>
 <template>
-    <h1 class="title">Adoptar</h1>
-    <div class="d-flex container cards">
-        <div class="row row-cols-1 row-cols-md-3 g-4"  v-for="pet in pets.value" :key="pet.id">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="col w-75 mb-3">
-                    <div class="card h-100">
-                        <img :src="pet.pet_url" class="card-img-top img" alt="foto de la mascota">
-                        <div class="card-body">
+    <div class="row m-5">
+            <h2 class="title text-center my-4">Adoptar</h2>
+            <div class="col pets">
+                <div class="card" v-for="pet in pets.value" :key="pet.id">
+                    <img :src="pet.pet_url" class="card-img-top img" alt="foto de la mascota">
+                    <div class="card-body">
+                        <div class="card-header">
                             <h5 class="card-title text-info">{{pet.pet_name}}</h5>
-                            <p class="card-text">{{pet.description}}</p>
+                        </div>
+                        <div class="card-desc">
+                             <p class="card-text">{{pet.description}}</p>
                             <a href="#"  class="d-flex justify-content-end ancla" @click="setPetSelected(pet)" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver más</a>
                         </div>
                         <div class="card-footer">
@@ -87,20 +48,45 @@ onMounted(() => {
                                 <button @click="adoption(pet.id,pet.pet_name)" class="btn btn-info display-6 d-grid">Adoptar</button>
                             </small>
                         </div>
-                    <AdoptionModal :pet="petSelected"/>   
+                        <AdoptionModal :pet="petSelected"/> 
                     </div>
                 </div>
-            </div>
-        </div>
-    </div> 
+            </div>          
+        </div>    
 </template>
+
+
 <style scoped>
+
+.pets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 1rem 13px;
+  gap: 36px;
+  border: none !important;
+  perspective: 800px; 
+}
+
+.card-body { 
+    position: relative;
+}
+
+.pets .card img {
+    width: 100%;
+    height: 11rem;
+    object-fit: cover;
+}
+
 .title {
     text-align: center;
     margin-top: 10%;
     color: #0d6efd;
 }
-
+.container-main {
+    display: flex;
+    flex-direction: column;
+    background: red;
+}
 .cards {
   display: flex;
   flex-direction: column;  
@@ -138,6 +124,7 @@ onMounted(() => {
         width:70%;
         height:70%;
         margin: 2px auto;
+        object-fit: cover;
     }
  }
 @media (min-width: 1024px) {
@@ -152,8 +139,9 @@ onMounted(() => {
     }  
     .img {
         margin: 2px auto;
+        object-fit: cover;
     }
-} 
+}  
 
 
 </style>
